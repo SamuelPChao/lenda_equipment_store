@@ -16,11 +16,11 @@ export default defineStore("user", {
         if (res.status === 200) {
           this.isLoggedIn = true;
           this.currentUser = res.data.data.user;
-          // const expirationDate = new Date();
-          // expirationDate.setDate(expirationDate.getDate() + 90);
-          // document.cookie = `jwt=${
-          //   res.data.token
-          // }; expires=${expirationDate.toUTCString()}; path=/`;
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate() + 90);
+          document.cookie = `jwt=${
+            res.data.token
+          }; expires=${expirationDate.toUTCString()}; path=/`;
           actions.setValues({
             identification: "",
             password: "",
