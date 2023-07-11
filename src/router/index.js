@@ -114,7 +114,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const store = useUserStore();
-  store.getUserStatus();
+  await store.getUserStatus();
+  console.log("router");
 
   return next();
 });

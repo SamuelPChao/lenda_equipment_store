@@ -1,35 +1,35 @@
 <script>
-import { mapActions, mapState } from 'pinia'
-import useShoppingCartStore from '../stores/shoppingCart'
-import useUserStore from '../stores/user'
+import { mapActions, mapState } from "pinia";
+import useShoppingCartStore from "../stores/shoppingCart";
+import useUserStore from "../stores/user";
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
   data() {
     return {
-      mobileMenuOpen: false
-    }
+      mobileMenuOpen: false,
+    };
   },
   computed: {
     ...mapState(useUserStore, {
-      isLoggedIn: 'isLoggedIn'
+      isLoggedIn: "isLoggedIn",
     }),
     ...mapState(useShoppingCartStore, {
-      cartItemQuantity: 'cartItemQuantity'
-    })
+      cartItemQuantity: "cartItemQuantity",
+    }),
   },
   methods: {
     ...mapActions(useShoppingCartStore, {
-      toggleModal: 'toggleModal'
+      toggleModal: "toggleModal",
     }),
     ...mapActions(useUserStore, {
-      logoutUser: 'logoutUser'
+      logoutUser: "logoutUser",
     }),
     async onLogout() {
-      await this.logoutUser()
-      this.$router.go(0)
-    }
-  }
-}
+      await this.logoutUser();
+      // this.$router.go(0)
+    },
+  },
+};
 </script>
 
 <template>
@@ -61,32 +61,19 @@ export default {
           d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
         />
       </svg>
-      <span
-        class="cartItemQuantity"
-        v-show="cartItemQuantity > 0"
-        >{{ cartItemQuantity }}</span
-      >
+      <span class="cartItemQuantity" v-show="cartItemQuantity > 0">{{
+        cartItemQuantity
+      }}</span>
     </div>
     <div class="authBox">
-      <RouterLink
-        v-if="!isLoggedIn"
-        :to="{ name: 'login' }"
-        class="routerLink"
+      <RouterLink v-if="!isLoggedIn" :to="{ name: 'login' }" class="routerLink"
         ><v-btn variant="text"> Login </v-btn></RouterLink
       >
-      <RouterLink
-        v-if="!isLoggedIn"
-        :to="{ name: 'signup' }"
-        class="routerLink"
+      <RouterLink v-if="!isLoggedIn" :to="{ name: 'signup' }" class="routerLink"
         ><v-btn variant="text"> Sign Up </v-btn></RouterLink
       >
-      <RouterLink
-        v-if="isLoggedIn"
-        :to="{ name: 'account' }"
-        class="routerLink"
-        ><v-btn variant="text">
-          My Account
-        </v-btn></RouterLink
+      <RouterLink v-if="isLoggedIn" :to="{ name: 'account' }" class="routerLink"
+        ><v-btn variant="text"> My Account </v-btn></RouterLink
       >
       <RouterLink
         v-if="isLoggedIn"
@@ -117,11 +104,9 @@ export default {
           d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
         />
       </svg>
-      <span
-        class="cartItemQuantity"
-        v-show="cartItemQuantity > 0"
-        >{{ cartItemQuantity }}</span
-      >
+      <span class="cartItemQuantity" v-show="cartItemQuantity > 0">{{
+        cartItemQuantity
+      }}</span>
     </div>
     <div class="mobileNavMenuBtnBox">
       <svg
@@ -147,20 +132,11 @@ export default {
     @click.prevent="mobileMenuOpen = !mobileMenuOpen"
   >
     <div class="linkBox">
-      <RouterLink
-        :to="{ name: 'product' }"
-        class="routerLink"
-      >
+      <RouterLink :to="{ name: 'product' }" class="routerLink">
         Product
       </RouterLink>
-      <RouterLink :to="{ name: 'news' }" class="routerLink">
-        News
-      </RouterLink>
-      <RouterLink
-        v-if="!isLoggedIn"
-        :to="{ name: 'login' }"
-        class="routerLink"
-      >
+      <RouterLink :to="{ name: 'news' }" class="routerLink"> News </RouterLink>
+      <RouterLink v-if="!isLoggedIn" :to="{ name: 'login' }" class="routerLink">
         Login
       </RouterLink>
       <RouterLink

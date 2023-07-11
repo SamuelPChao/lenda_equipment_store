@@ -1,55 +1,55 @@
 <script>
-import AppHeader from '@/components/AppHeader.vue'
-import AppFooter from './components/AppFooter.vue'
-import AppShoppingCart from './components/AppShoppingCart.vue'
-import { mapActions, mapState } from 'pinia'
-import useUserStore from './stores/user'
-import { handleError } from 'vue'
+import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
+import AppShoppingCart from "./components/AppShoppingCart.vue";
+import { mapActions, mapState } from "pinia";
+import useUserStore from "./stores/user";
+import { handleError } from "vue";
 export default {
-  name: 'App',
+  name: "App",
   data() {
-    return {}
+    return {};
   },
   components: { AppHeader, AppShoppingCart, AppFooter },
   computed: {
     ...mapState(useUserStore, {
-      isLoggedIn: 'isLoggedIn'
-    })
+      isLoggedIn: "isLoggedIn",
+    }),
   },
   methods: {
     ...mapActions(useUserStore, {
-      getUserStatus: 'getUserStatus'
-    })
+      getUserStatus: "getUserStatus",
+      setToken: "setToken",
+    }),
   },
-  watch: {
-    $route: {
-      immediate: true,
-      async handler(newValue, oldValue) {
-        try {
-          if (this.$cookies.get('jwt'))
-            await this.getUserStatus(
-              this.$cookies.get('jwt')
-            )
-          if (
-            newValue.meta.requiresAuth &&
-            !this.isLoggedIn
-          )
-            return this.$router.push({ name: 'login' })
-        } catch (err) {
-          console.log(err)
-        }
-      }
+  created() {
+    if (this.$cookies.get("jwt")) {
+      this.setToken(this.$cookies.get("jwt"));
+      console.log("created");
     }
-  }
-}
+  },
+  // watch: {
+  //   $route: {
+  //     immediate: true,
+  //     async handler(newValue, oldValue) {
+  //       try {
+  //         if (this.$cookies.get("jwt"))
+  //           await this.getUserStatus(this.$cookies.get("jwt"));
+  //         if (newValue.meta.requiresAuth && !this.isLoggedIn)
+  //           return this.$router.push({ name: "login" });
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     },
+  //   },
+  // },
+};
 </script>
 
 <template>
   <app-header></app-header>
   <RouterView class="viewbody" v-slot="{ Component }">
-    <transition name="fade"
-      ><component :is="Component"
-    /></transition>
+    <transition name="fade"><component :is="Component" /></transition>
   </RouterView>
   <app-shopping-cart> </app-shopping-cart>
   <app-footer></app-footer>

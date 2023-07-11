@@ -5,8 +5,12 @@ export default defineStore("user", {
   state: () => ({
     isLoggedIn: false,
     currentUser: {},
+    jwt: null,
   }),
   actions: {
+    setToken(token) {
+      this.jwt = token;
+    },
     async loginUser(values, actions) {
       try {
         const res = await axios.post(
@@ -36,13 +40,14 @@ export default defineStore("user", {
           });
       }
     },
-    async getUserStatus(cookie) {
+    async getUserStatus() {
       try {
         const res = await axios.post(
-          `https://lenda-server.onrender.com/api/v1/users/testing`,{
-            token:cookie
-          },
-          { withCredentials: true }
+          `https://lenda-server.onrender.com/api/v1/users/testing`,
+          {
+            token: this.jwt,
+          }
+          // { withCredentials: true }
         );
         if (!res.status === 200) {
           console.log("not");
@@ -61,12 +66,13 @@ export default defineStore("user", {
     async logoutUser() {
       try {
         const res = await axios.get(
-          `https://lenda-server.onrender.com/api/v1/users/logout`,
-          { withCredentials: true }
+          `https://lenda-server.onrender.com/api/v1/users/logout`
         );
+        console.log(res);
         if (res.status === 200) {
           this.isLoggedIn = false;
           this.currentUser = {};
+          this.jwt = null;
           document.cookie =
             "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
