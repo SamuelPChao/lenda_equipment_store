@@ -1,0 +1,72 @@
+1.使用者
+使用者頁面(front)
+註冊(back,front)[done,done]
+//////////////////////////////////////////////////
+登入(back,front)[done,done] note: http狀態 cookie無法正確存取 但req.headers內還是有暫存 非https下執行cors瀏覽器及伺服器會阻擋cookie存取
+//////////////////////////////////////////////////
+登出(back,front)[done,done]
+修改個人資料(back,front)[done,done]
+修改密碼(back,front)[done,done]
+忘記密碼(back,front)(先放著)
+
+2.訂單
+訂單頁面(back,front)
+建立(back,front)[done,done]已增加日期
+查詢(back,front)[done,done]已增加日期
+編輯(back,front)[done,done]已增加日期
+取消(back,front)[done,done](canceled=true)
+購物車轉成訂單資料(?)(back,front)[done,done]
+
+訂單細節頁的bookingDetail是透過computed mapState booking store得到的
+如果同時開啟其他分頁 可能會導致原本分頁的bookingDetail更新到新開啟分頁的bookingDetail資料?
+
+3.產品細節Modal(front)
+產品頁面的產品分類、品牌請求透過beforeUpdate觸發會一直重複執行 耗效能 有問題(fixed,using beforeMount)
+
+4.選單導航(done)
+路由參數(done)
+
+5.錯誤處理
+
+6.其他頁面
+首頁
+
+////////////////////////////////////////
+new error
+orderDetail 的 app-booking-item date報錯(maybe it's just a vue internal bug)
+登入後需驗證頁面reload仍會被導向至login(可能是app的getUserStatus請求回應時間差及router執行順序問題)(fixed,直接在app內用this.$route.meta.requiresAuth取代beforeEach)
+////////////////////////////////////////
+
+--------------------------------------------------
+
+////////////////////////////////////////
+待辦
+orderDetail cart orderEdit 模塊化切版
+////////////////////////////////////////
+
+複習
+vue
+生命週期
+
+
+07/06
+////////////////////////////////////////
+appProductModel的showIntro如果在accessory下關閉狀態就會保留在accessory
+到沒有accessory的產品時就會沒有顯示spec
+將showIntro設置到product pinia解決?
+////////////////////////////////////////
+////////////////////////////////////////
+angenieux跟red mag的照片好像掛掉(擋請求?)
+////////////////////////////////////////
+sony 24-105圖也壞了 不知道為什麼
+////////////////////////////////////////
+
+
+
+
+07/07
+////////////////////////////////////////
+productBox樣式及內容再優化
+server respond handle
+server respond setting
+////////////////////////////////////////

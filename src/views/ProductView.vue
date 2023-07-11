@@ -1,0 +1,128 @@
+<script>
+import AppProductBox from '../components/AppProductBox.vue'
+import AppSideMenu from '@/components/AppSideMenu.vue'
+import AppProductModal from '../components/AppProductModal.vue'
+import useProductStore from '@/stores/product'
+import { mapState, mapActions } from 'pinia'
+// import axios from 'axios'
+// Array.from(document.querySelectorAll('.photo img')).map(img => img.src)\
+export default {
+  name: 'ProductView',
+  components: {
+    AppProductBox,
+    AppSideMenu,
+    AppProductModal
+  },
+  data() {
+    return {
+      products: []
+    }
+  },
+  computed: {
+    ...mapState(useProductStore, {
+      productModalOpen: 'productModalOpen',
+      allProducts: 'allProducts',
+      productTypeBrand: 'productTypeBrand',
+      currentModalProduct: 'currentModalProduct'
+    })
+  },
+  methods: {
+    ...mapActions(useProductStore, {
+      setCurrentProduct: 'setCurrentProduct',
+      getAllProducts: 'getAllProducts',
+      getProductsByTypeAndBrand:
+        'getProductsByTypeAndBrand',
+      closeProductModal: 'closeProductModal'
+    })
+  },
+  watch: {
+    '$route.params': {
+      immediate: true,
+      async handler(newValue, oldValue) {
+        try {
+          if (newValue.type && newValue.brand) {
+            await this.getProductsByTypeAndBrand(
+              this.$route.params.type,
+              this.$route.params.brand
+            )
+            if (this.productTypeBrand)
+              return (this.products = this.productTypeBrand)
+          }
+          await this.getAllProducts()
+          if (this.allProducts)
+            this.products = this.allProducts
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+  }
+}
+</script>
+
+<template>
+  <div class="productView" @click="closeProductModal">
+    <app-side-menu class="appSideMenu"></app-side-menu>
+    <div class="productsBox">
+      <div class="wrapper">
+        <template v-for="(product, i) in products">
+          <app-product-box
+            :product="product"
+            :index="i"
+            class="productBox"
+            @click.stop="setCurrentProduct(product)"
+          >
+          </app-product-box>
+        </template>
+      </div>
+    </div>
+    <app-product-modal
+      v-show="productModalOpen"
+      :product="currentModalProduct"
+      class="appProductModal"
+    ></app-product-modal>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.productView{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  .appSideMenu{
+    width: 20%;
+  }
+  .productsBox{
+    .wrapper{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      height: auto;
+      .productBox{
+        width:15rem;
+        height: 15rem;
+      }
+    }
+  }
+}
+@media(max-width:768px){
+  .productView{
+    .appSideMenu{
+      width:100%
+    }
+    .productsBox{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+      .wrapper{
+        grid-template-columns: 1fr 1fr;
+        .productBox{
+          width: 11rem;
+          height: 16rem;
+        }
+      }
+    }
+  }
+}
+</style>
