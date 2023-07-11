@@ -36,10 +36,12 @@ export default defineStore("user", {
           });
       }
     },
-    async getUserStatus() {
+    async getUserStatus(cookie) {
       try {
         const res = await axios.post(
-          `https://lenda-server.onrender.com/api/v1/users/testing`,
+          `https://lenda-server.onrender.com/api/v1/users/testing`,{
+            token:cookie
+          },
           { withCredentials: true }
         );
         if (!res.status === 200) {
