@@ -116,8 +116,11 @@ router.beforeEach(async (to, from, next) => {
   const store = useUserStore();
   await store.getUserStatus();
   console.log("router");
-
-  return next();
+  if (to.meta.requiresAuth && !store.isLoggedIn) {
+    return next({ name: "login" });
+  }
+  console.log("after");
+  next();
 });
 
 export default router;

@@ -26,7 +26,7 @@ export default {
     }),
     async onLogout() {
       await this.logoutUser();
-      // this.$router.go(0)
+      this.$router.go(0);
     },
   },
 };

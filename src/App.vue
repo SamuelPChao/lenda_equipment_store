@@ -19,14 +19,7 @@ export default {
   methods: {
     ...mapActions(useUserStore, {
       getUserStatus: "getUserStatus",
-      setToken: "setToken",
     }),
-  },
-  created() {
-    if (this.$cookies.get("jwt")) {
-      this.setToken(this.$cookies.get("jwt"));
-      console.log("created");
-    }
   },
   // watch: {
   //   $route: {
