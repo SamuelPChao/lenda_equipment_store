@@ -22,19 +22,19 @@ export default {
     }),
   },
   watch: {
-    $route: {
-      immediate: true,
-      async handler(newValue, oldValue) {
-        try {
-          if (this.$cookies.get("jwt"))
-            await this.getUserStatus(this.$cookies.get("jwt"));
-          if (newValue.meta.requiresAuth && !this.isLoggedIn)
-            return this.$router.push({ name: "login" });
-        } catch (err) {
-          console.log(err);
-        }
-      },
-    },
+    // $route: {
+    //   immediate: true,
+    //   async handler(newValue, oldValue) {
+    //     try {
+    //       if (this.$cookies.get("jwt"))
+    //         await this.getUserStatus(this.$cookies.get("jwt"));
+    //       if (newValue.meta.requiresAuth && !this.isLoggedIn)
+    //         return this.$router.push({ name: "login" });
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   },
+    // },
   },
 };
 </script>

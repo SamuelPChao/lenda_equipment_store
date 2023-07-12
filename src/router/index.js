@@ -112,10 +112,15 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const store = useUserStore();
-  // await store.getUserStatus();
-  console.log("router");
+  if (store.jwt) {
+    try {
+      await store.getUserStatus();
+    } catch (err) {
+      console.log(err);
+    }
+  }
   if (to.meta.requiresAuth && !store.isLoggedIn) {
     return next({ name: "login" });
   }

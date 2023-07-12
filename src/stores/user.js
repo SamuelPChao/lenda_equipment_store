@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { VueCookies } from "vue-cookies";
 
 export default defineStore("user", {
   state: () => ({
     isLoggedIn: false,
     currentUser: {},
+    jwt: $cookies.get("jwt"),
   }),
   actions: {
     async loginUser(values, actions) {
@@ -17,6 +19,7 @@ export default defineStore("user", {
           this.isLoggedIn = true;
           this.currentUser = res.data.data.user;
           const expirationDate = new Date();
+          console.log(res.headers);
           expirationDate.setDate(expirationDate.getDate() + 90);
           document.cookie = `jwt=${
             res.data.token
@@ -36,28 +39,21 @@ export default defineStore("user", {
           });
       }
     },
-    async getUserStatus(token) {
+    async getUserStatus() {
       try {
-        // const res = await axios.post(
-        //   `https://lenda-server.onrender.com/api/v1/users/isLoggedIn`,
-        //   {},
-        //   { withCredentials: true }
-        // );
         const res = await axios({
           method: "post",
           url: `https://lenda-server.onrender.com/api/v1/users/isLoggedIn`,
           headers: {
-            authorization: token,
+            authorization: this.jwt,
           },
         });
         if (!res.status === 200) {
-          console.log("not");
           return false;
         }
         if (res.status === 200) {
           this.isLoggedIn = true;
           this.currentUser = res.data.data.user;
-          console.log(res.headers.Authorization, res.headers.authorization);
           return true;
         }
       } catch (err) {
@@ -72,7 +68,6 @@ export default defineStore("user", {
             withCredentials: true,
           }
         );
-        console.log(res);
         if (res.status === 200) {
           this.isLoggedIn = false;
           this.currentUser = {};
@@ -119,7 +114,6 @@ export default defineStore("user", {
           values,
           { withCredentials: true }
         );
-        console.log(res);
         if (res.status === 200) {
           this.currentUser = res.data.data.user;
           return true;
@@ -129,8 +123,6 @@ export default defineStore("user", {
       }
     },
     async updateUserPassword(values, actions) {
-      console.log(values);
-      console.log(this.currentUser.id);
       try {
         const res = await axios.patch(
           `https://lenda-server.onrender.com/api/v1/users/updateMyPassword`,
