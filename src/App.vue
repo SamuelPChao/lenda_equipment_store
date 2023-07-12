@@ -21,6 +21,9 @@ export default {
       getUserStatus: "getUserStatus",
     }),
   },
+  created() {
+    this.getUserStatus();
+  },
   // watch: {
   //   $route: {
   //     immediate: true,

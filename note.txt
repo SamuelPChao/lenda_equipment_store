@@ -70,3 +70,14 @@ productBox樣式及內容再優化
 server respond handle
 server respond setting
 ////////////////////////////////////////
+
+
+
+07/12待辦
+////////////////////////////////////////
+解決cookies問題(chrome會暫存,safari不會)
+在homepage以外refresh(logout) 會死掉 應該是router設定=>https://www.netlify.com/blog/how-to-deploy-vue-3-and-vite-app-in-5-minutes/
+server的response各項要再理一次
+front-end的request取得的res.status handler完善
+ipad size rwd
+剩餘phone device rwd:news頁面 shoppingCart modal, product modal
