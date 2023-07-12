@@ -1,63 +1,63 @@
 <script>
-import AppSideMenu from '@/components/AppSideMenu.vue'
-import AppGoogleMap from '../components/AppGoogleMap.vue'
-import AppItemPlayer from '../components/AppItemPlayer.vue'
-import AppNewsBox from '../components/AppNewsBox.vue'
-import AppHomePageBanner from '../components/AppHomePageBanner.vue'
-import AppStoreInfo from '../components/AppStoreInfo.vue'
+import AppSideMenu from "@/components/AppSideMenu.vue";
+import AppGoogleMap from "../components/AppGoogleMap.vue";
+import AppItemPlayer from "../components/AppItemPlayer.vue";
+import AppNewsInfo from "../components/AppNewsInfo.vue";
+import AppHomePageBanner from "../components/AppHomePageBanner.vue";
+import AppStoreInfo from "../components/AppStoreInfo.vue";
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
     AppHomePageBanner,
     AppSideMenu,
     AppStoreInfo,
     AppGoogleMap,
     AppItemPlayer,
-    AppNewsBox
+    AppNewsInfo,
   },
   data() {
     return {
       productInfos: [
         {
-          productName: 'ARRI ALEXA MINI',
+          productName: "ARRI ALEXA MINI",
           productImg:
-            'https://s3-ap-northeast-1.amazonaws.com/mgrwebstore/img/webimgs/thumbs/Arri Alexa Mini1.png',
+            "https://s3-ap-northeast-1.amazonaws.com/mgrwebstore/img/webimgs/thumbs/Arri Alexa Mini1.png",
           detailInfos: [
-            '強大色彩控制 — Rec.709、Rec.2020、ARRI WideGamut',
-            '高速拍攝 — 最高 200 幀高速拍攝',
-            '多格式支持 — ProRes 4444、ProRes 422 以及ArriRAW',
-            '內置ND — 內建 ND 0.6,1.2,2.1 控制光線及曝光快速調節'
-          ]
+            "強大色彩控制 — Rec.709、Rec.2020、ARRI WideGamut",
+            "高速拍攝 — 最高 200 幀高速拍攝",
+            "多格式支持 — ProRes 4444、ProRes 422 以及ArriRAW",
+            "內置ND — 內建 ND 0.6,1.2,2.1 控制光線及曝光快速調節",
+          ],
         },
         {
-          productName: 'Red V-Raptor 8K',
+          productName: "Red V-Raptor 8K",
           productImg:
-            'https://s3-ap-northeast-1.amazonaws.com/mgrwebstore/img/webimgs/compress/RED V-Raptor 8K-2.png',
+            "https://s3-ap-northeast-1.amazonaws.com/mgrwebstore/img/webimgs/compress/RED V-Raptor 8K-2.png",
           detailInfos: [
-            '7168 X 3780 Resolution',
-            '高速拍攝 — 8K 60 幀、4K 240幀 高速拍攝',
-            '高動態範圍 — 最高至 18 檔寬容度'
-          ]
+            "7168 X 3780 Resolution",
+            "高速拍攝 — 8K 60 幀、4K 240幀 高速拍攝",
+            "高動態範圍 — 最高至 18 檔寬容度",
+          ],
         },
         {
-          productName: 'Sony FX6',
+          productName: "Sony FX6",
           productImg:
-            'https://s3-ap-northeast-1.amazonaws.com/mgrwebstore/img/webimgs/thumbs/FX6V_1.png',
+            "https://s3-ap-northeast-1.amazonaws.com/mgrwebstore/img/webimgs/thumbs/FX6V_1.png",
           detailInfos: [
-            '4K 120幀 6274點相位式偵測自動對焦 涵蓋 89% 影像區域',
-            'S-Cinetone、S-Log3、S-Gamut3.Cine 色彩高動態表現',
-            'ISO 800 - 12800 雙感光 搭配 15 檔高動態範圍'
-          ]
-        }
+            "4K 120幀 6274點相位式偵測自動對焦 涵蓋 89% 影像區域",
+            "S-Cinetone、S-Log3、S-Gamut3.Cine 色彩高動態表現",
+            "ISO 800 - 12800 雙感光 搭配 15 檔高動態範圍",
+          ],
+        },
         // {
         //   productName: '',
         //   productImg: '',
         //   detailInfos: []
         // }
-      ]
-    }
-  }
-}
+      ],
+    };
+  },
+};
 </script>
 
 <template>
@@ -74,10 +74,7 @@ export default {
     </section>
     <section class="newsSection">
       <div class="newsSectionTitle">最新消息</div>
-      <app-news-box
-        :newsPerPage="6"
-        class="appNewsBox"
-      ></app-news-box>
+      <app-news-info :newsPerPage="6" class="appNewsBox"></app-news-info>
     </section>
     <section class="storeInfoSection">
       <div class="storeInfoSectionTitle">店家資訊</div>

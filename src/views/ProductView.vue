@@ -1,42 +1,50 @@
 <script>
-import AppProductBox from '../components/AppProductBox.vue'
-import AppSideMenu from '@/components/AppSideMenu.vue'
-import AppProductModal from '../components/AppProductModal.vue'
-import useProductStore from '@/stores/product'
-import { mapState, mapActions } from 'pinia'
-// import axios from 'axios'
-// Array.from(document.querySelectorAll('.photo img')).map(img => img.src)\
+import AppProductBox from "../components/AppProductBox.vue";
+import AppSideMenu from "@/components/AppSideMenu.vue";
+import AppProductModal from "../components/AppProductModal.vue";
+import useProductStore from "@/stores/product";
+import useShoppingCartStore from "@/stores/shoppingCart";
+import { mapState, mapActions } from "pinia";
 export default {
-  name: 'ProductView',
+  name: "ProductView",
   components: {
     AppProductBox,
     AppSideMenu,
-    AppProductModal
+    AppProductModal,
   },
   data() {
     return {
-      products: []
-    }
+      products: [],
+    };
   },
   computed: {
     ...mapState(useProductStore, {
-      productModalOpen: 'productModalOpen',
-      allProducts: 'allProducts',
-      productTypeBrand: 'productTypeBrand',
-      currentModalProduct: 'currentModalProduct'
-    })
+      productModalOpen: "productModalOpen",
+      allProducts: "allProducts",
+      productTypeBrand: "productTypeBrand",
+      currentModalProduct: "currentModalProduct",
+    }),
+    ...mapState(useShoppingCartStore, {
+      cartModalOpen: "isOpen",
+    }),
   },
   methods: {
     ...mapActions(useProductStore, {
-      setCurrentProduct: 'setCurrentProduct',
-      getAllProducts: 'getAllProducts',
-      getProductsByTypeAndBrand:
-        'getProductsByTypeAndBrand',
-      closeProductModal: 'closeProductModal'
-    })
+      setCurrentProduct: "setCurrentProduct",
+      getAllProducts: "getAllProducts",
+      getProductsByTypeAndBrand: "getProductsByTypeAndBrand",
+      closeProductModal: "closeProductModal",
+    }),
+    ...mapActions(useShoppingCartStore, {
+      toggleCartModal: "toggleModal",
+    }),
+    onProductModal(product) {
+      if (this.cartModalOpen) this.toggleCartModal();
+      this.setCurrentProduct(product);
+    },
   },
   watch: {
-    '$route.params': {
+    "$route.params": {
       immediate: true,
       async handler(newValue, oldValue) {
         try {
@@ -44,20 +52,19 @@ export default {
             await this.getProductsByTypeAndBrand(
               this.$route.params.type,
               this.$route.params.brand
-            )
+            );
             if (this.productTypeBrand)
-              return (this.products = this.productTypeBrand)
+              return (this.products = this.productTypeBrand);
           }
-          await this.getAllProducts()
-          if (this.allProducts)
-            this.products = this.allProducts
+          await this.getAllProducts();
+          if (this.allProducts) this.products = this.allProducts;
         } catch (err) {
-          console.log(err)
+          console.log(err);
         }
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 </script>
 
 <template>
@@ -70,7 +77,7 @@ export default {
             :product="product"
             :index="i"
             class="productBox"
-            @click.stop="setCurrentProduct(product)"
+            @click.stop="onProductModal(product)"
           >
           </app-product-box>
         </template>
@@ -89,6 +96,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin:0 auto;
   .appSideMenu{
     width: 20%;
   }
@@ -107,7 +115,7 @@ export default {
 @media(max-width:768px){
   .productView{
     .appSideMenu{
-      width:100%
+      width:85%
     }
     .productsBox{
       width: 100%;

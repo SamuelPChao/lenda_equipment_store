@@ -1,12 +1,12 @@
 <script>
 export default {
-  name: 'AppAccessoryItem',
+  name: "AppAccessoryItem",
   props: {
     accessory: {
-      type: Object
-    }
-  }
-}
+      type: Object,
+    },
+  },
+};
 </script>
 <template>
   <div class="AppAccessoryItem">
@@ -19,12 +19,8 @@ export default {
         />
       </div>
       <div class="accessoryInfoBox">
-        <span class="accessoryName">{{
-          accessory.name.toUpperCase()
-        }}</span>
-        <span class="accessoryPrice">
-          $NT {{ accessory.price }}
-        </span>
+        <span class="accessoryName">{{ accessory.name.toUpperCase() }}</span>
+        <span class="accessoryPrice"> $NT {{ accessory.price }} </span>
       </div>
     </div>
   </div>
@@ -36,9 +32,12 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  padding:0.5rem 0.5rem;
   border-bottom: 0.05rem solid $not-that-grey-blacker;
   .accessoryImgBox{
     width:30%;
+    display: flex;
+    justify-content: center;
     .accessoryImg{
       width:80%;
       aspect-ratio: 1/1;
@@ -49,10 +48,12 @@ export default {
     width:60%;
     display:flex;
     flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    padding:1.5rem 0;
     span{
-      width:100%
+      width:100%;
+      font-size: 0.8rem;
     }
   }
 }

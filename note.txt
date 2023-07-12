@@ -75,8 +75,11 @@ server respond setting
 
 07/12待辦
 ////////////////////////////////////////
-解決cookies問題(chrome會暫存,safari不會)
-在homepage以外refresh(logout) 會死掉 應該是router設定=>https://www.netlify.com/blog/how-to-deploy-vue-3-and-vite-app-in-5-minutes/
+解決cookies問題(chrome會暫存,safari不會) =>(DONE)
+=>headers跟cookies都沒辦法雙邊解決 在前端isLoggedIn透過axios.header,後端接得到headers
+後端傳出去的headers前端接不到(無所謂 用res.statuscode handle res)
+在homepage以外refresh(logout) 會死掉 應該是router設定=>https://www.netlify.com/blog/how-to-deploy-vue-3-and-vite-app-in-5-minutes/ (DONE)
+
 server的response各項要再理一次
 front-end的request取得的res.status handler完善
 ipad size rwd

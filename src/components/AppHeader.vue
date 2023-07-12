@@ -2,6 +2,7 @@
 import { mapActions, mapState } from "pinia";
 import useShoppingCartStore from "../stores/shoppingCart";
 import useUserStore from "../stores/user";
+import useProductStore from "@/stores/product";
 export default {
   name: "AppHeader",
   data() {
@@ -16,6 +17,9 @@ export default {
     ...mapState(useShoppingCartStore, {
       cartItemQuantity: "cartItemQuantity",
     }),
+    ...mapState(useProductStore, {
+      productModalOpen: "productModalOpen",
+    }),
   },
   methods: {
     ...mapActions(useShoppingCartStore, {
@@ -24,9 +28,16 @@ export default {
     ...mapActions(useUserStore, {
       logoutUser: "logoutUser",
     }),
+    ...mapActions(useProductStore, {
+      toggleProductModal: "toggleProductModal",
+    }),
     async onLogout() {
       await this.logoutUser();
       this.$router.go(0);
+    },
+    onCartModal() {
+      if (this.productModalOpen) this.toggleProductModal();
+      this.toggleModal();
     },
   },
 };
@@ -49,7 +60,7 @@ export default {
     </div>
     <div class="cartBox">
       <svg
-        @click.prevent="toggleModal"
+        @click.prevent="onCartModal"
         xmlns="http://www.w3.org/2000/svg"
         width="30"
         height="30"

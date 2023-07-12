@@ -1,38 +1,32 @@
 <script>
-import { mapActions } from 'pinia'
-import useShoppingCartStore from '../stores/shoppingCart'
+import { mapActions } from "pinia";
+import useShoppingCartStore from "../stores/shoppingCart";
 export default {
-  name: 'AppCartItem',
+  name: "AppCartItem",
   data() {
-    return {}
+    return {};
   },
   props: {
     product: {
       type: Object,
-      required: true
+      required: true,
     },
     index: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     onQuantityChange(event) {
-      this.$emit(
-        'quantity-change',
-        Number(event.target.value)
-      )
-    }
-  }
-}
+      this.$emit("quantity-change", Number(event.target.value));
+    },
+  },
+};
 </script>
 
 <template>
   <div class="appCartItem">
-    <div
-      class="deleteItemBtnBox"
-      v-if="!product.notForEdit"
-    >
+    <div class="deleteItemBtnBox" v-if="!product.notForEdit">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="30"
@@ -50,39 +44,31 @@ export default {
     <div
       class="productImgBox"
       :style="{
-        'background-image': 'url(' + product.imageSRC + ')'
+        'background-image': 'url(' + product.imageSRC + ')',
       }"
     ></div>
     <div class="productInfoBox">
       <div class="productNameBox">
         <span class="productNameField">{{
-          product.brand ? product.brand.toUpperCase() : ''
+          product.brand ? product.brand.toUpperCase() : ""
         }}</span>
         <span class="productNameField">
-          {{
-            product.model ? product.model.toUpperCase() : ''
-          }}</span
+          {{ product.model ? product.model.toUpperCase() : "" }}</span
         >
       </div>
-      <div class="productPriceBox">
-        NT$ {{ product.price }}
-      </div>
+      <div class="productPriceBox">NT$ {{ product.price }}</div>
     </div>
     <div class="prodQuantityBox">
       <select
         v-model="product.quantity"
         class="select"
         :disabled="product.quantityDisabled"
-        @change="
-          $emit(
-            'quantityChange',
-            Number($event.target.value)
-          )
-        "
+        @change="$emit('quantityChange', Number($event.target.value))"
       >
         <option
           v-for="(inventory, i) in product.inventory"
           :value="i + 1"
+          class="option"
         >
           {{ i + 1 }}
         </option>
@@ -96,6 +82,7 @@ export default {
   display: flex;
   width: 100%;
   height: 8rem;
+  justify-content: space-evenly;
   align-items: center;
   border-bottom: 1px solid $not-that-black;
   .deleteItemBtnBox{
@@ -103,15 +90,19 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 0 0 0.5rem;
     .deleteItemBtn{
+      width: 75%;
+      margin:0 auto;
+      height: auto;
       cursor: pointer;
     }
   }
   .productImgBox{
-    width:9rem;
-    height: 6rem;
-    background-size: contain;
+    width:15%;
+    height: auto;
+    aspect-ratio: 3/2;
+    background-size: 120%;
+    background-position: center center;
   }
   .productInfoBox{
     width: 60%;
@@ -126,6 +117,7 @@ export default {
       width: 100%;
       .productNameField{
         padding:0.25rem 0.25rem;
+        text-align: center;
       }
     }
     .productPriceBox{
@@ -140,31 +132,31 @@ export default {
     justify-content: center;
     align-items: center;
     .select{
-    width: 90%;
-    height: 40%;
-    appearance: none;
-    padding: 0.25rem;
-    text-align: center;
-    font-size: 1rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.5rem;
-    background-color: white;
-    color: $not-that-black;
-  }
+      width: 100%;
+      height: 40%;
+      appearance: none;
+      padding: 0.25rem;
+      text-align: center;
+      font-size: 1rem;
+      border: 0.1rem solid #ccc;
+      border-radius: 0.5rem;
+      background-color: white;
+      color: $not-that-black;
+    }
   }
 }
 @media(max-width:768px){
   .appCartItem{
     .deleteItemBtnBox{
+      width: 10%;
       .deleteItemBtn{
         width: 100%;
         height: auto;
       }
     }
     .productImgBox{
-      width: 15%;
-      background-position: center center;
-      background-size: 175%;
+      aspect-ratio: 1/1;
+      background-size: 150%;
     }
     .productInfoBox{
       .productNameBox{

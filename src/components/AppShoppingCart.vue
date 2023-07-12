@@ -1,29 +1,26 @@
 <script>
-import { mapState, mapActions } from 'pinia'
-import AppCartItem from './AppCartItem.vue'
-import useShoppingCartStore from '../stores/shoppingCart'
+import { mapState, mapActions } from "pinia";
+import AppCartItem from "./AppCartItem.vue";
+import useShoppingCartStore from "../stores/shoppingCart";
 export default {
-  name: 'AppShoppingCart',
+  name: "AppShoppingCart",
   components: {
-    AppCartItem
+    AppCartItem,
   },
   data() {
-    return {}
+    return {};
   },
   computed: {
     ...mapState(useShoppingCartStore, {
-      isOpen: 'isOpen',
-      cart: 'cart',
-      totalPrice: 'totalPrice'
-    })
+      isOpen: "isOpen",
+      cart: "cart",
+      totalPrice: "totalPrice",
+    }),
   },
   methods: {
-    ...mapActions(useShoppingCartStore, [
-      'toggleModal',
-      'deleteItem'
-    ])
-  }
-}
+    ...mapActions(useShoppingCartStore, ["toggleModal", "deleteItem"]),
+  },
+};
 </script>
 
 <template>
@@ -53,14 +50,10 @@ export default {
           @delete-item="deleteItem(i)"
         ></app-cart-item>
       </div>
-      <div class="cartInfo">
-        <div class="sumInfoBox">
-          NT$ {{ totalPrice }} / 天
-        </div>
+      <div class="cartInfoBox">
+        <div class="sumInfoBox">NT$ {{ totalPrice }} / 天</div>
         <div class="checkoutBtnBox">
-          <router-link
-            class="checkoutBtn"
-            :to="{ name: 'cart' }"
+          <router-link class="checkoutBtn" :to="{ name: 'cart' }"
             >去疊車
           </router-link>
         </div>
@@ -70,59 +63,75 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.cartBox{
-  position: fixed;
-  top:15vh;
-  left:50vw;
-  transform:translateX(-50%);
-  width: 32rem;
-  height: 32rem;
-  background-color: $not-that-white;
-  border: solid 1px $not-that-grey;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 2rem 0.1rem $not-that-black-shadow
-}
-.cancelBtn{
-  position: fixed;
-  background-color: $not-that-white;
-  border-radius: 16px;
-  right: -0.9rem;
-  top:-1.2rem;
-  cursor: pointer;
-}
-.cartItemBox{
-  width: 100%;
-  height: 24rem;
-  overflow-y: auto;
-}
-.cartInfo{
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 8rem;
-  position: fixed;
-  bottom: 0;
-  padding:0.5rem 0;
-  background-color: $not-that-grey-lighter;
-  .sumInfoBox{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin: 0.25rem 0;
+.appShoppingCart{
+  .cartBox{
+    position: fixed;
+    top:15vh;
+    left:50vw;
+    transform:translateX(-50%);
+    width: 32rem;
+    height: 32rem;
+    background-color: $not-that-white;
+    border: solid 1px $not-that-grey;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 2rem 0.1rem $not-that-black-shadow;
+    .cancelBtn{
+      position: fixed;
+      background-color: $not-that-white;
+      border-radius: 16px;
+      right: -0.9rem;
+      top:-1.2rem;
+      cursor: pointer;
+    }
+    .cartItemBox{
+      width: 100%;
+      height: 24rem;
+      overflow-y: auto;
+    }
+    .cartInfoBox{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 8rem;
+      position: fixed;
+      bottom: 0;
+      padding:0.5rem 0;
+      background-color: $not-that-grey-lighter;
+      .sumInfoBox{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin: 0.25rem 0;
+      }
+      .checkoutBtnBox{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .checkoutBtn{
+          width: 90% ;
+          display: block ;
+          border: solid 1px $not-that-black;
+          border-radius: 0.5rem;
+          text-align: center;
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
-  .checkoutBtnBox{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .checkoutBtn{
-      width: 90% ;
-      display: block ;
-      border: solid 1px $not-that-black;
-      border-radius: 0.5rem;
-      text-align: center;
-      font-size: 1.5rem;
+}
+@media(max-width:768px){
+  .appShoppingCart{
+    .cartBox{
+      width: 80vw;
+      height: 80vh;
+      .cartItemBox{
+        height: 80%;
+      }
+      .cartInfoBox{
+        height: 20%;
+      }
     }
   }
 }

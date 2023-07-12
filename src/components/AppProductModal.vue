@@ -1,33 +1,33 @@
 <script>
-import { mapActions } from 'pinia'
-import useShoppingCartStore from '../stores/shoppingCart'
-import useProductStore from '@/stores/product'
-import AppAccessoryItem from './AppAccessoryItem.vue'
+import { mapActions } from "pinia";
+import useShoppingCartStore from "../stores/shoppingCart";
+import useProductStore from "@/stores/product";
+import AppAccessoryItem from "./AppAccessoryItem.vue";
 
 export default {
-  name: 'AppProductModal',
+  name: "AppProductModal",
   data() {
     return {
-      showIntro: 'spec'
-    }
+      showIntro: "spec",
+    };
   },
   props: {
     product: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   components: {
-    AppAccessoryItem
+    AppAccessoryItem,
   },
   methods: {
     ...mapActions(useShoppingCartStore, {
-      addToCart: 'addToCart'
+      addToCart: "addToCart",
     }),
     ...mapActions(useProductStore, {
-      toggleProductModal: 'toggleProductModal'
-    })
-  }
-}
+      toggleProductModal: "toggleProductModal",
+    }),
+  },
+};
 </script>
 
 <template>
@@ -52,23 +52,13 @@ export default {
     </div>
     <div class="productBox">
       <div class="productImgBox">
-        <img
-          class="productImg"
-          :src="product.imageSRC"
-          :alt="product.name"
-        />
+        <img class="productImg" :src="product.imageSRC" :alt="product.name" />
       </div>
       <div class="productInfoBox">
         <div class="productNameBox">
-          {{
-            product.name
-              ? product.name.toUpperCase()
-              : undefined
-          }}
+          {{ product.name ? product.name.toUpperCase() : undefined }}
         </div>
-        <div class="productPriceBox">
-          NT$ {{ product.price }}
-        </div>
+        <div class="productPriceBox">NT$ {{ product.price }}</div>
       </div>
       <div class="actionBtnsBox">
         <svg
@@ -92,10 +82,7 @@ export default {
           class="productIntro"
           @click="showIntro = 'spec'"
           :style="{
-            borderBottom:
-              showIntro === 'spec'
-                ? '0.075rem solid black'
-                : ''
+            borderBottom: showIntro === 'spec' ? '0.075rem solid black' : '',
           }"
         >
           規格
@@ -105,9 +92,7 @@ export default {
           @click="showIntro = 'accessory'"
           :style="{
             borderBottom:
-              showIntro === 'accessory'
-                ? '0.075rem solid black'
-                : ''
+              showIntro === 'accessory' ? '0.075rem solid black' : '',
           }"
           v-show="product.accessory"
         >
@@ -115,119 +100,61 @@ export default {
         </li>
       </ul>
       <div class="productIntroContentBox">
-        <div
-          class="productIntroContent"
-          v-show="showIntro === 'spec'"
-        >
+        <div class="productIntroContent" v-show="showIntro === 'spec'">
           <span class="productName"
             >器材名稱:
-            {{
-              product.name ? product.name.toUpperCase() : ''
-            }}</span
+            {{ product.name ? product.name.toUpperCase() : "" }}</span
           >
           <span class="productType"
             >器材類型:
             {{
               product.productTypeSpec
                 ? product.productTypeSpec.toUpperCase()
-                : ''
+                : ""
             }}
 
             {{
-              product.productType
-                ? product.productType.toUpperCase()
-                : ''
+              product.productType ? product.productType.toUpperCase() : ""
             }}</span
           >
 
-          <span
-            class="productSensorSize"
-            v-if="product.sensorSize"
-          >
+          <span class="productSensorSize" v-if="product.sensorSize">
             感光片幅:
-            {{
-              product.sensorSize
-                ? product.sensorSize.toUpperCase()
-                : ''
-            }}
+            {{ product.sensorSize ? product.sensorSize.toUpperCase() : "" }}
           </span>
-          <span
-            class="productLensMount"
-            v-if="product.lensMount"
+          <span class="productLensMount" v-if="product.lensMount"
             >鏡頭接口:
-            {{
-              product.lensMount
-                ? product.lensMount.toUpperCase()
-                : ''
-            }}
+            {{ product.lensMount ? product.lensMount.toUpperCase() : "" }}
             Mount</span
           >
-          <span
-            class="productStorageSize"
-            v-if="product.storageSize"
-            >儲存容量:
-            {{
-              product.storageSize
-                ? product.storageSize
-                : ''
-            }}GB
+          <span class="productStorageSize" v-if="product.storageSize"
+            >儲存容量: {{ product.storageSize ? product.storageSize : "" }}GB
           </span>
-          <span
-            class="productMonitorSize"
-            v-if="product.monitorSize"
+          <span class="productMonitorSize" v-if="product.monitorSize"
             >螢幕尺寸:
-            {{
-              product.monitorSize
-                ? product.monitorSize
-                : ''
-            }}"</span
+            {{ product.monitorSize ? product.monitorSize : "" }}"</span
           >
-          <span
-            class="productSignal"
-            v-if="product.signalType"
-          >
+          <span class="productSignal" v-if="product.signalType">
             訊號類型:
             <a v-for="signalType in product.signalType"
-              >{{
-                signalType ? signalType.toUpperCase() : ''
-              }}
+              >{{ signalType ? signalType.toUpperCase() : "" }}
             </a>
           </span>
-          <div
-            class="productTripodSize"
-            v-if="product.tripodSize"
-          >
+          <div class="productTripodSize" v-if="product.tripodSize">
             油壓頭尺寸:
-            {{
-              product.tripodSize ? product.tripodSize : ''
-            }}mm
+            {{ product.tripodSize ? product.tripodSize : "" }}mm
           </div>
-          <span
-            class="productFilterSize"
-            v-if="product.filterSize"
-          >
+          <span class="productFilterSize" v-if="product.filterSize">
             濾鏡尺寸:
             {{ product.filterSize === 5.65 ? 4 : 6.6 }}mm x
-            {{
-              product.filterSize ? product.filterSize : ''
-            }}mm
+            {{ product.filterSize ? product.filterSize : "" }}mm
           </span>
-          <span
-            class="productFilterQuantity"
-            v-if="product.filterQuantity"
-          >
+          <span class="productFilterQuantity" v-if="product.filterQuantity">
             濾鏡數量:
-            {{
-              product.filterQuantity
-                ? product.filterQuantity
-                : ''
-            }}枚
+            {{ product.filterQuantity ? product.filterQuantity : "" }}枚
           </span>
         </div>
-        <div
-          class="productIntroContent"
-          v-show="showIntro === 'accessory'"
-        >
+        <div class="productIntroContent" v-show="showIntro === 'accessory'">
           <div class="accessoryItemsBox">
             <app-accessory-item
               v-for="(accessory, i) in product.accessory"
@@ -248,7 +175,7 @@ export default {
   left:50vw;
   transform:translateX(-50%);
   width: 32rem;
-  height: auto;
+  height: 32rem;
   background-color: $not-that-white;
   border: solid 1px $not-that-grey;
   border-radius: 0.5rem;
@@ -263,15 +190,18 @@ export default {
     }
   }
   .productBox{
+    height: 50%;
     display: flex;
     flex-wrap:wrap ;
+    padding:1rem 1rem;
     .productImgBox{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+      width: 100%;
+      height: 70%;
+      display: flex;
+      justify-content: center;
       .productImg{
-        width: 24rem;
-        height: 16rem;
+        width: auto;
+        height:100%;
       }
     }
     .productInfoBox{
@@ -279,7 +209,7 @@ export default {
       .productNameBox, .productPriceBox{
         width: 100%;
         padding:0.25rem 0.50rem;
-        font-size:1.25rem;
+        font-size:1rem;
         font-weight: 300;
       }
     }
@@ -295,7 +225,9 @@ export default {
     }
   }
   .productIntroBox{
-    padding: 0.5rem 0.5rem;
+    padding: 1rem 1rem;
+    height: 50%;
+    // overflow-y: auto;
     .productIntroList{
       width: 100%;
       display:flex;
@@ -310,6 +242,8 @@ export default {
       }
     }
     .productIntroContentBox{
+      height: 90%;
+      overflow-y: auto;
       .productIntroContent{
         display: flex;
         flex-wrap: wrap;
@@ -320,6 +254,26 @@ export default {
           a{
             padding: 0 0.5rem 0 0;
           }
+        }
+      }
+    }
+  }
+}
+@media(max-width:768px){
+  .appProductModal{
+    width: 80vw;
+    height: 80vh;
+    .productBox{
+      .productImgBox{
+        height: 60%;
+        .productImg{
+          width: auto;
+          height:60%;
+        }
+      }
+      .productInfoBox{
+        .productNameBox, .productPriceBox{
+          font-size:1.25rem;
         }
       }
     }
