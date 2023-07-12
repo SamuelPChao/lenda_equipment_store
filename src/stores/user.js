@@ -36,13 +36,20 @@ export default defineStore("user", {
           });
       }
     },
-    async getUserStatus() {
+    async getUserStatus(token) {
       try {
-        const res = await axios.post(
-          `https://lenda-server.onrender.com/api/v1/users/isLoggedIn`,
-          {},
-          { withCredentials: true }
-        );
+        // const res = await axios.post(
+        //   `https://lenda-server.onrender.com/api/v1/users/isLoggedIn`,
+        //   {},
+        //   { withCredentials: true }
+        // );
+        axios({
+          method: "post",
+          url: `https://lenda-server.onrender.com/api/v1/users/isLoggedIn`,
+          headers: {
+            Authorization: "wtfcookie",
+          },
+        });
         if (!res.status === 200) {
           console.log("not");
           return false;
