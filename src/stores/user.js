@@ -43,11 +43,11 @@ export default defineStore("user", {
         //   {},
         //   { withCredentials: true }
         // );
-        axios({
+        const res = await axios({
           method: "post",
           url: `https://lenda-server.onrender.com/api/v1/users/isLoggedIn`,
           headers: {
-            Authorization: "wtfcookie",
+            authorization: token,
           },
         });
         if (!res.status === 200) {
@@ -57,7 +57,7 @@ export default defineStore("user", {
         if (res.status === 200) {
           this.isLoggedIn = true;
           this.currentUser = res.data.data.user;
-          console.log(res.data.data.user);
+          console.log(res.headers.Authorization, res.headers.authorization);
           return true;
         }
       } catch (err) {
