@@ -88,7 +88,7 @@ export default {
       justify-content: center;
       .pageSelector{
         font-size: 1.5rem;
-        padding: 0 1%;
+        padding: 0 1rem;
       }
     }
   }
@@ -113,7 +113,7 @@ export default {
       }
       .pageSelectorBox{
        .pageSelector{
-        padding:0 3%;
+        padding:0 0.5rem;
        } 
       }
     }

@@ -187,80 +187,106 @@ export default {
   left: 0;
   top: 0;
 }
-@media (min-width: 1024px){
-  .navheader {
+.mobileNavHeader{
+  display: none;
+}
+.mobileNavMenuBox{
+  display: none;
+}
+.navheader {
   width: 100%;
   height: 5rem;
   box-shadow: 0 0 0.5rem 0.5rem $not-that-black-shadow;
   justify-content: center;
-    .logoBox {
-      width: 10%;
+  .logoBox {
+    width: 10%;
+    display: flex;
+    .logoLink {
       display: flex;
-      .logoLink {
-        display: flex;
-        .logo {
-          width: 4rem;
-          height: 4rem;
-          background-color: red;
-          border-radius: 100%;
-          font-style: italic;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 1.25rem;
-        }
-      }
-    }
-
-    .linkBox{
-      width: 40%;
-      display: flex;
-      justify-content: space-evenly;
-    }
-
-    .cartBox{
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 0 2rem;
-      .carticon{
-        cursor: pointer;
-      }
-      .carticon:hover{
-        background-color: $not-that-grey;
-        border-radius:0.25rem;
-      }
-      .cartItemQuantity{
-        position: absolute;
-        right:0.75rem;
-        bottom: 1rem;
+      .logo {
+        width: 4rem;
+        height: 4rem;
         background-color: red;
-        padding: 0.2rem 0.75rem;
-        border-radius: 5rem;
+        border-radius: 100%;
+        font-style: italic;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .linkBox{
+    width: 40%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .cartBox{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+    .carticon{
+      cursor: pointer;
+    }
+    .carticon:hover{
+      background-color: $not-that-grey;
+      border-radius:0.25rem;
+    }
+    .cartItemQuantity{
+      position: absolute;
+      right:0.75rem;
+      bottom: 1rem;
+      background-color: red;
+      padding: 0.2rem 0.75rem;
+      border-radius: 5rem;
+    }
+  }
+  .authBox{
+    display:flex;
+    width:20%;
+    justify-content: center;
+    align-items: center;
+    .routerLink{
+    margin:0 1rem;
+    }
+  }
+}
+
+@media(max-width:1024px) and (min-width:768px){
+  .navheader{
+    display: flex;
+    justify-content: space-evenly;
+    .logoBox{
+      width: 15%;
+      justify-content: center;
+    }
+    .linkBox{
+      width: 35%;
+    }
+    .cartBox{
+      width: 5%;
+      padding:0;
+      justify-content: right;
+      .carticon{
+        width: 2rem !important;
+        height: 2rem !important;
       }
     }
     .authBox{
-      display:flex;
-      width:20%;
-      justify-content: center;
-      align-items: center;
-      .routerLink{
-      margin:0 1rem;
-      }
+      width: 35%;
     }
   }
-  .mobileNavHeader{
-    display: none;
-  }
-  .mobileNavMenuBox{
-    display: none;
-  }
 }
+
 @media (max-width:768px){
   .navheader{
     display: none;
   }
   .mobileNavHeader{
+    display: flex;
     width: 100vw;
     height: 6rem;
     justify-content: space-evenly;

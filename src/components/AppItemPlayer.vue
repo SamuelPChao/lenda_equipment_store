@@ -1,35 +1,30 @@
 <script>
 export default {
-  name: 'AppItemPlayer',
+  name: "AppItemPlayer",
   data() {
     return {
       playerIndex: 0,
-      item: ['A', 'B', 'C', 'D', 'E']
-    }
+      item: ["A", "B", "C", "D", "E"],
+    };
   },
   props: {
-    productInfos: Array
+    productInfos: Array,
   },
   methods: {
     changeItem(param) {
-      if (param === 'right') this.playerIndex += 1
-      if (param === 'left') this.playerIndex -= 1
-      if (this.playerIndex + 1 > this.productInfos.length)
-        this.playerIndex = 0
-      if (this.playerIndex < 0)
-        this.playerIndex = this.productInfos.length - 1
-    }
-  }
-}
+      if (param === "right") this.playerIndex += 1;
+      if (param === "left") this.playerIndex -= 1;
+      if (this.playerIndex + 1 > this.productInfos.length) this.playerIndex = 0;
+      if (this.playerIndex < 0) this.playerIndex = this.productInfos.length - 1;
+    },
+  },
+};
 </script>
 
 <template>
   <div class="appItemPlayerBox">
     <div class="itemsBox">
-      <div
-        class="btnBox btnLeftBox"
-        @click="changeItem('left')"
-      >
+      <div class="btnBox btnLeftBox" @click="changeItem('left')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="36"
@@ -63,9 +58,7 @@ export default {
             <div class="detailInfoBox">
               <span
                 class="info"
-                v-for="(
-                  detailInfo, i
-                ) in productInfo.detailInfos"
+                v-for="(detailInfo, i) in productInfo.detailInfos"
                 :index="i"
               >
                 {{ detailInfo }}
@@ -74,10 +67,7 @@ export default {
           </div>
         </div>
       </div>
-      <div
-        class="btnBox btnRightBox"
-        @click="changeItem('right')"
-      >
+      <div class="btnBox btnRightBox" @click="changeItem('right')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="36"
@@ -100,6 +90,7 @@ export default {
   width:90%;
   margin: 0 auto;
   box-shadow: 0 0 0.5rem 0.1rem $not-that-black-shadow;
+  border:1px solid $not-that-grey-blacker;
   border-radius: 1rem;
   .itemsBox{
     position: relative;
@@ -111,7 +102,7 @@ export default {
       top:100%;
       transform: translateY(-50%);
       background-color: rgba(208, 208, 208, 0.5);
-      border:1px solid rgba(255, 255, 255, 0.5);
+      border:1px solid $not-that-grey-blacker;
       border-radius: 1rem;
       box-shadow: 0 0 1rem 0.05rem $not-that-black-shadow;
     }
@@ -184,7 +175,57 @@ export default {
     display: block !important;
   }
 }
-
+@media(max-width:1024px) and (min-width:768px){
+  .appItemPlayerBox{
+    .itemsBox{
+      .btnBox{
+        transform: translateY(-20%);
+        .directionBtn{
+          width: 4rem !important;
+          height: 4rem !important;
+        }
+      }
+      .btnLeftBox{
+        left:30%;
+      }
+      .btnRightBox{
+        right:30%;
+      }
+      .displayNone{
+        .itemBox{
+          width: 100%;
+          .imgBox{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 50%;
+            .itemImage{
+              height: 100%;
+              width: auto;
+            }
+          }
+          .detailBox{
+            width: 100%;
+            height: 50%;
+            padding:1rem 2rem;
+            .nameBox{
+              text-align: center;
+              font-size: 2rem;
+            }
+            .detailInfoBox{
+              height: 75%;
+              .info{
+                font-size: 1.25rem;
+                text-align: center;
+                padding:0.25rem 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 @media(max-width:768px){
 .appItemPlayerBox{
   .itemsBox{

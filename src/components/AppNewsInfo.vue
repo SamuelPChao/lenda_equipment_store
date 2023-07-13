@@ -1,32 +1,19 @@
 <script>
 import axios from "axios";
+import AppNewsBox from "./AppNewsBox.vue";
 export default {
   name: "AppNewsInfo",
   data() {
     return {
       allNews: [],
-      newsData: [],
       outputNews: [],
       currentNews: 0,
     };
   },
   props: {
-    queryString: {
-      type: String,
-      default: undefined,
-    },
-    currentPage: {
-      type: Number,
-      default: 1,
-    },
     newsPerPage: {
       type: Number,
       default: 6,
-    },
-  },
-  computed: {
-    totalPages() {
-      return Math.ceil(this.newsData.length / this.newsPerPage);
     },
   },
   methods: {
@@ -37,9 +24,7 @@ export default {
         );
         if (res.status === 404) return false;
         this.allNews = res.data.data.doc;
-        if (this.queryString) return this.filterNews(this.queryString);
-        this.newsData = this.allNews;
-        this.dividePage();
+        this.outputNews = this.allNews.slice(0, this.newsPerPage);
       } catch (err) {
         console.log(err);
       }
@@ -58,22 +43,6 @@ export default {
         params: { newsId: id },
       });
     },
-    filterNews(queryString) {
-      if (!queryString) {
-        this.newsData = this.allNews;
-        this.dividePage();
-        return;
-      }
-      this.newsData = this.allNews.filter(
-        (news) => news.newsQueryCategory === queryString
-      );
-      this.dividePage();
-    },
-    dividePage() {
-      const startIndex = (this.currentPage - 1) * this.newsPerPage;
-      const endIndex = startIndex + this.newsPerPage;
-      this.outputNews = this.newsData.slice(startIndex, endIndex);
-    },
     autoPlayNews() {
       const autoPlayInterval = setInterval(() => {
         if (this.currentNews === this.outputNews.length - 1) {
@@ -87,24 +56,6 @@ export default {
   beforeMount() {
     this.getAllNews();
     this.autoPlayNews();
-  },
-  watch: {
-    queryString: {
-      immediate: true,
-      handler(newValue, oldValue) {
-        this.filterNews(newValue);
-      },
-    },
-    currentPage: {
-      handler(newValue, oldValue) {
-        this.dividePage();
-      },
-    },
-    totalPages: {
-      handler(newValue, oldValue) {
-        this.$emit("totalPagesUpdate", newValue);
-      },
-    },
   },
 };
 </script>
@@ -160,10 +111,10 @@ export default {
 
   .newsBoxContainer{
     width: 90%;
-    margin: 0 auto;
     display:flex;
-    justify-content: center;
     flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
     .newsBox{
       position: relative;
       width: 30%;
@@ -215,17 +166,26 @@ export default {
     }
   }
 }
-
+@media(max-width:1024px) and (min-width:768px){
+  .appNewsInfo{
+    .newsBoxContainer{
+      width: 100%;
+      justify-content: space-evenly;
+      .newsBox{
+        width: 40%;
+        margin:0 0 1rem 0;
+      }
+    }
+  }
+}
 @media(max-width:768px){
 .appNewsInfo{
   overflow: hidden;
   .newsBoxContainer{
       width: 100%;
-      display: flex;
+      flex-wrap: nowrap;
       height: auto;
       overflow: hidden;
-      flex-wrap: nowrap;
-      justify-content: center;
       .newsBox{
         display: none;
         width: 90%;

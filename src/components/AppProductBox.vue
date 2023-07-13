@@ -1,19 +1,19 @@
 <script>
-import { mapActions } from 'pinia'
-import useShoppingCartStore from '../stores/shoppingCart'
+import { mapActions } from "pinia";
+import useShoppingCartStore from "../stores/shoppingCart";
 export default {
-  name: 'AppProductBox',
+  name: "AppProductBox",
   props: {
     product: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   methods: {
     ...mapActions(useShoppingCartStore, {
-      addToCart: 'addToCart'
-    })
-  }
-}
+      addToCart: "addToCart",
+    }),
+  },
+};
 </script>
 
 <template>
@@ -21,14 +21,12 @@ export default {
     <div
       class="productImgBox"
       :style="{
-        'background-image': 'url(' + product.imageSRC + ')'
+        'background-image': 'url(' + product.imageSRC + ')',
       }"
     ></div>
     <div class="productInfoBox">
       <div class="productNameBox">
-        <span class="productName">{{
-          product.name.toUpperCase()
-        }}</span>
+        <span class="productName">{{ product.name.toUpperCase() }}</span>
       </div>
       <div class="productPrice">${{ product.price }}</div>
     </div>
@@ -59,7 +57,7 @@ export default {
   box-shadow: 0 0 0.5rem 0.1rem $not-that-black-shadow;
   .productImgBox{
     width: 100%;
-    height: 7rem;
+    height: 50%;
     background-size: contain;
     background-position: center center;
     background-color: $not-that-white;
@@ -96,7 +94,22 @@ export default {
     }
   }
 }
-
+@media(max-width:1024px) and (min-width: 768px){
+  .appProductBox{
+    margin: 0 0.25rem 0.25rem 0.25rem;
+    .productImgBox{
+      width: 100%;
+      height: 45%;
+    }
+    .productInfoBox{
+      .productNameBox{
+        .productName{
+          font-size:0.8rem;
+        }
+      }
+    }
+  }
+}
 @media(max-width:768px){
   .appProductBox{
     margin:0.25rem;

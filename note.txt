@@ -84,3 +84,7 @@ server的response各項要再理一次
 front-end的request取得的res.status handler完善
 ipad size rwd
 剩餘phone device rwd:news頁面 shoppingCart modal, product modal
+
+
+////////////////////////////////////////
+productBox的規格、配件如果選了配件再切換到沒有配件的 會顯示空白

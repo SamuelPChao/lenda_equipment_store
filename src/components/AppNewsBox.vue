@@ -93,6 +93,13 @@ export default {
     }
   }
 }
+
+@media(max-width:1024px) and (min-width:768px){
+  .appNewsBox{
+    width: 40%;
+  }
+}
+
 @media(max-width:768px){
   .appNewsBox{
     width: 100%;

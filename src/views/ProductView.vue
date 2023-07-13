@@ -112,6 +112,24 @@ export default {
     }
   }
 }
+@media(max-width:1024px) and (min-width: 768px){
+  .productView{
+    justify-content: space-between;
+    .appSideMenu{
+      width: 30%;
+    }
+    .productsBox{
+      width: 70%;
+      .wrapper{
+        grid-template-columns: 1fr 1fr 1fr;
+        .productBox{
+          width: 11rem;
+          height: 11rem;
+        }
+      }
+    }
+  }
+}
 @media(max-width:768px){
   .productView{
     .appSideMenu{

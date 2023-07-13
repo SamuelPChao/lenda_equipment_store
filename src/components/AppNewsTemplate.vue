@@ -118,6 +118,13 @@ export default {
     flex-wrap: wrap;
   }
 }
+@media(max-width:1024px) and (min-width:768px){
+  .appNewsTemplate{
+    .newsBoxContainer{
+      width: 100%;
+    }
+  }
+}
 
 @media(max-width:768px){
 .appNewsTemplate{

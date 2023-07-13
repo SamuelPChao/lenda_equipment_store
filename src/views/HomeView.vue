@@ -49,11 +49,6 @@ export default {
             "ISO 800 - 12800 雙感光 搭配 15 檔高動態範圍",
           ],
         },
-        // {
-        //   productName: '',
-        //   productImg: '',
-        //   detailInfos: []
-        // }
       ],
     };
   },
@@ -74,7 +69,7 @@ export default {
     </section>
     <section class="newsSection">
       <div class="newsSectionTitle">最新消息</div>
-      <app-news-info :newsPerPage="6" class="appNewsBox"></app-news-info>
+      <app-news-info :newsPerPage="6" class="appNewsInfo"></app-news-info>
     </section>
     <section class="storeInfoSection">
       <div class="storeInfoSectionTitle">店家資訊</div>
@@ -85,38 +80,47 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-section{
-  border-bottom: 0.1rem solid $not-that-grey-blacker;
-  margin-bottom: 2rem;
-}
-.productInfoSectionTitle{
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 500;
+.homeView{
+  section{
+    border-bottom: 0.1rem solid $not-that-grey-blacker;
     margin-bottom: 2rem;
-}
-.appItemPlayer{
-  margin-bottom: 8rem;
+  }
+  .productInfoSection{
+    .productInfoSectionTitle{
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .appItemPlayer{
+      margin-bottom: 8rem;
+    }
+  }
+  .newsSection{
+    .newsSectionTitle{
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .appNewsInfo{
+      margin-bottom: 2rem;
+    }
+  }
+  .storeInfoSection{
+    .storeInfoSectionTitle{
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .appGoogleMap{
+      margin:2rem auto;
+    }
+  }
 }
 
-.newsSectionTitle{
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-.appNewsBox{
-  margin-bottom: 2rem;
-}
-.storeInfoSectionTitle{
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-.appGoogleMap{
-  margin:2rem auto;
-}
+@media(max-width:1024px) and (min-width:768px){}
 @media (max-width:768px) {
   .homeView{
     .bannerSection{
