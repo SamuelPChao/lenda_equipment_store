@@ -1,5 +1,5 @@
 <script>
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import useShoppingCartStore from "../stores/shoppingCart";
 import useProductStore from "@/stores/product";
 import AppAccessoryItem from "./AppAccessoryItem.vue";
@@ -19,6 +19,11 @@ export default {
   components: {
     AppAccessoryItem,
   },
+  computed: {
+    ...mapState(useProductStore, {
+      productModalOpen: "productModalOpen",
+    }),
+  },
   methods: {
     ...mapActions(useShoppingCartStore, {
       addToCart: "addToCart",
@@ -26,6 +31,15 @@ export default {
     ...mapActions(useProductStore, {
       toggleProductModal: "toggleProductModal",
     }),
+  },
+  watch: {
+    productModalOpen: {
+      handler(newVal, oldVale) {
+        if (newVal) {
+          this.showIntro = "spec";
+        }
+      },
+    },
   },
 };
 </script>

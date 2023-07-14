@@ -87,7 +87,7 @@ export default {
     right: 0;
     display: flex;
     justify-content: right;
-    padding:0.25rem 0.25rem;
+    padding:0.5rem 0.5rem;
     .actionBtn{
       cursor: pointer;
       color:$not-that-black
@@ -116,6 +116,9 @@ export default {
     margin: 0 0.125rem;
     .productImgBox{
       width:100%;
+    }
+    .actionBtnsBox{
+      padding:0.75rem 0.5rem;
     }
   }
 }
