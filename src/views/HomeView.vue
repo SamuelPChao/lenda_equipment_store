@@ -132,7 +132,7 @@ export default {
       }
     }
     .newsSection{
-      .appNewsBox{
+      .appNewsInfo{
         margin-bottom: 35rem;
         width: 100%;
         display: flex;

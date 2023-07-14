@@ -88,7 +88,8 @@ export default defineStore("booking", {
           return true;
         }
       }
-      return alert("Booking was not canceled");
+      alert("Booking was not canceled");
+      return false;
     },
     async updateBooking(updatedBooking) {
       const updatedBookingCart = [];

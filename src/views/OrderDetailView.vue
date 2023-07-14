@@ -1,29 +1,39 @@
 <script>
-import useBookingStore from '../stores/booking'
-import { mapActions, mapState } from 'pinia'
-import AppCartItem from '../components/AppCartItem.vue'
-import AppBookingItem from '../components/AppBookingItem.vue'
+import useBookingStore from "../stores/booking";
+import { mapActions, mapState } from "pinia";
+import AppCartItem from "../components/AppCartItem.vue";
+import AppBookingItem from "../components/AppBookingItem.vue";
 export default {
-  name: 'OrderDetailView',
+  name: "OrderDetailView",
   components: {
     AppCartItem,
-    AppBookingItem
+    AppBookingItem,
   },
   methods: {
     ...mapActions(useBookingStore, {
-      getBookingDetail: 'getBookingDetail',
-      cancelBooking: 'cancelBooking'
-    })
+      getBookingDetail: "getBookingDetail",
+      cancelBooking: "cancelBooking",
+    }),
+    async onCancelBooking(orderId) {
+      try {
+        const res = await this.cancelBooking(orderId);
+        if (res) {
+          this.$router.go(0);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
   computed: {
     ...mapState(useBookingStore, {
-      bookingDetail: 'bookingDetail'
-    })
+      bookingDetail: "bookingDetail",
+    }),
   },
   beforeMount() {
-    this.getBookingDetail(this.$route.params.orderId)
-  }
-}
+    this.getBookingDetail(this.$route.params.orderId);
+  },
+};
 </script>
 <template>
   <div class="orderDetailView">
@@ -38,7 +48,7 @@ export default {
             ...item.product,
             quantity: item.quantity,
             notForEdit: true,
-            quantityDisabled: true
+            quantityDisabled: true,
           }"
         ></app-cart-item>
       </div>
@@ -52,29 +62,33 @@ export default {
     <div class="actionBtnsBox">
       <router-link
         class="actionBtn"
-        v-if="
-          !bookingDetail.check && !bookingDetail.canceled
-        "
+        v-if="!bookingDetail.check && !bookingDetail.canceled"
         :to="{
           name: 'order-edit',
-          params: { orderId: this.$route.params.orderId }
+          params: { orderId: this.$route.params.orderId },
         }"
-        >Edit Order</router-link
+        >修改訂單</router-link
+      >
+      <router-link
+        class="actionBtn"
+        :to="{
+          name: 'order',
+        }"
+        >回訂單列表</router-link
       >
       <button
-        class="actionBtn"
-        v-if="
-          !bookingDetail.check && !bookingDetail.canceled
-        "
-        @click="cancelBooking(this.$route.params.orderId)"
+        class="actionBtn cancelBtn"
+        v-if="!bookingDetail.check && !bookingDetail.canceled"
+        @click="onCancelBooking(this.$route.params.orderId)"
       >
-        Cancel Order
+        取消訂單
       </button>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .orderDetailView{
+  width: 100%;
   .orderDetailBox{
     width:60%;
     margin:0 auto;
@@ -96,9 +110,9 @@ export default {
     .actionBtn{
       width: 30%;
       font-size: 1rem;
+      text-align: center;
       margin: 0.5rem 0;
       padding:0.25rem 0.25rem;
-      text-align: center;
       border-radius: 0.5rem;
       border: 0.1rem solid black;
       transition: all 0.2s linear;
@@ -106,6 +120,11 @@ export default {
     .actionBtn:hover{
       background-color: black;
       color:white
+    }
+    .cancelBtn{
+      background-color: rgba(255, 0, 0, 0.75);
+      color: white;
+      border: 0.1rem solid $not-that-grey-blacker;
     }
   }
 }

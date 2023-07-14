@@ -1,75 +1,72 @@
 <script>
-import useBookingStore from '../stores/booking'
-import { mapActions, mapState } from 'pinia'
-import AppCartItem from '../components/AppCartItem.vue'
-import AppBookingItem from '../components/AppBookingItem.vue'
-import AppCompanyInfo from '../components/AppCompanyInfo.vue'
-import AppDatePicker from '../components/AppDatePicker.vue'
+import useBookingStore from "../stores/booking";
+import { mapActions, mapState } from "pinia";
+import AppCartItem from "../components/AppCartItem.vue";
+import AppBookingItem from "../components/AppBookingItem.vue";
+import AppCompanyInfo from "../components/AppCompanyInfo.vue";
+import AppDatePicker from "../components/AppDatePicker.vue";
 export default {
-  name: 'OrderEditView',
+  name: "OrderEditView",
   data() {
     return {
-      bookingVModel: {}
-    }
+      bookingVModel: {},
+    };
   },
   components: {
     AppCartItem,
     AppBookingItem,
     AppCompanyInfo,
-    AppDatePicker
+    AppDatePicker,
   },
   methods: {
     ...mapActions(useBookingStore, {
-      getBookingDetail: 'getBookingDetail',
-      updateBooking: 'updateBooking',
-      totalPriceCalculator: 'totalPriceCalculator',
-      durationCalculator: 'durationCalculator'
+      getBookingDetail: "getBookingDetail",
+      updateBooking: "updateBooking",
+      totalPriceCalculator: "totalPriceCalculator",
+      durationCalculator: "durationCalculator",
     }),
     deleteItem(index) {
       if (this.bookingVModel && this.bookingVModel.cart)
-        return this.bookingVModel.cart.splice(index, 1)
+        return this.bookingVModel.cart.splice(index, 1);
     },
     updateValue(value, target) {
-      this.bookingVModel[target] = value
+      this.bookingVModel[target] = value;
     },
     async onUpdateBooking() {
       try {
-        const res = await this.updateBooking(
-          this.bookingVModel
-        )
+        const res = await this.updateBooking(this.bookingVModel);
         if (res)
-          this.$router.push({
-            name: 'order-detail',
-            params: { orderId: this.$route.params.orderId }
-          })
+          return this.$router.push({
+            name: "order-detail",
+            params: { orderId: this.$route.params.orderId },
+          });
+        alert("Something went wrong, order is not edited correctly");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    },
   },
   computed: {
     ...mapState(useBookingStore, {
-      bookingDetail: 'bookingDetail'
+      bookingDetail: "bookingDetail",
     }),
     totalPrice() {
-      return this.totalPriceCalculator(
-        this.bookingVModel.cart
-      )
+      return this.totalPriceCalculator(this.bookingVModel.cart);
     },
     duration() {
       return this.durationCalculator(
         this.bookingVModel.date[0],
         this.bookingVModel.date[1]
-      )
-    }
+      );
+    },
   },
   beforeMount() {
-    this.getBookingDetail(this.$route.params.orderId)
+    this.getBookingDetail(this.$route.params.orderId);
     if (this.bookingDetail) {
-      this.bookingVModel = this.bookingDetail
+      this.bookingVModel = this.bookingDetail;
     }
-  }
-}
+  },
+};
 </script>
 <template>
   <div class="orderEditView">
@@ -77,29 +74,23 @@ export default {
       <h3 class="cartTitle">Confirm Your Equipment</h3>
       <div class="cartItemsBox">
         <app-cart-item
-          @quantityChange="
-            this.bookingVModel.cart[i].quantity = $event
-          "
+          @quantityChange="this.bookingVModel.cart[i].quantity = $event"
           @delete-item="deleteItem(i)"
           v-for="(cartItem, i) in bookingVModel.cart"
           :index="i"
           :product="{
             notForEdit: false,
             ...cartItem.product,
-            quantity: cartItem.quantity
+            quantity: cartItem.quantity,
           }"
         ></app-cart-item>
       </div>
       <div class="cartInfoBox">
         <app-company-info
           :companyVatId="bookingVModel.companyVatId"
-          @updateCompanyTitle="
-            updateValue($event, 'companyTitle')
-          "
+          @updateCompanyTitle="updateValue($event, 'companyTitle')"
           :companyTitle="bookingVModel.companyTitle"
-          @updateCompanyVatId="
-            updateValue($event, 'companyVatId')
-          "
+          @updateCompanyVatId="updateValue($event, 'companyVatId')"
         ></app-company-info>
         <app-date-picker
           :date="bookingVModel.date"
@@ -110,16 +101,30 @@ export default {
           {{ totalPrice * duration }}
         </div>
       </div>
-      <div class="actionBtnsBox">
-        <button class="actionBtn" @click="onUpdateBooking">
-          修改完成
-        </button>
-      </div>
+    </div>
+    <div class="actionBtnsBox">
+      <button class="actionBtn" @click="onUpdateBooking">修改完成</button>
+      <router-link
+        class="actionBtn"
+        :to="{
+          name: 'order-detail',
+          params: { orderId: this.$route.params.orderId },
+        }"
+        >回訂單詳情</router-link
+      >
+      <router-link
+        class="actionBtn"
+        :to="{
+          name: 'order',
+        }"
+        >回訂單列表</router-link
+      >
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .orderEditView{
+  width: 100%;
   margin: auto;
   .bookingDetailBox{
     width:60%;
@@ -153,6 +158,7 @@ export default {
       width: 30%;
       font-size: 1rem;
       text-align: center;
+      margin: 0.5rem 0;
       padding:0.25rem 0.25rem;
       border-radius: 0.5rem;
       border: 0.1rem solid black;
@@ -171,6 +177,7 @@ export default {
     }
     .actionBtnsBox{
       width: 100%;
+      flex-wrap: wrap;
       .actionBtn{
         width: 60%;
       }
