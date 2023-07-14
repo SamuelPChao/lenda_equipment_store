@@ -151,12 +151,12 @@ export default {
           position: absolute;
           bottom: 0;
           left:0;
-          width: 50%;
+          width: 30%;
           padding:1rem;
         }
         .newsIssueDateBox{
           position: absolute;
-          width: 50%;
+          width: 70%;
           bottom: 0;
           right:0;
           padding:1rem;
