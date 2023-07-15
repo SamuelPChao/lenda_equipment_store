@@ -4,7 +4,7 @@ import AppFooter from "./components/AppFooter.vue";
 import AppShoppingCart from "./components/AppShoppingCart.vue";
 import { mapActions, mapState } from "pinia";
 import useUserStore from "./stores/user";
-import { handleError } from "vue";
+import useShoppingCartStore from "@/stores/shoppingCart";
 export default {
   name: "App",
   data() {
@@ -14,6 +14,9 @@ export default {
   computed: {
     ...mapState(useUserStore, {
       isLoggedIn: "isLoggedIn",
+    }),
+    ...mapState(useShoppingCartStore, {
+      isOpen: "isOpen",
     }),
   },
   methods: {
@@ -57,6 +60,7 @@ export default {
   padding-top: 6rem;
   padding-bottom: 6rem;
 }
+
 @media(max-width:768px){
   .viewbody{
     max-width: 768px;

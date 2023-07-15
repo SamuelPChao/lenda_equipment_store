@@ -20,7 +20,7 @@ export default defineStore("product", {
       this.toggleProductModal();
     },
     closeProductModal(event) {
-      if (!event.target.closest(".appProductModal") && this.productModalOpen) {
+      if (this.productModalOpen) {
         this.toggleProductModal();
       }
     },

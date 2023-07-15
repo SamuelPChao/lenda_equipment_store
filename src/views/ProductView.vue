@@ -68,7 +68,7 @@ export default {
 </script>
 
 <template>
-  <div class="productView" @click="closeProductModal">
+  <div class="productView">
     <app-side-menu class="appSideMenu"></app-side-menu>
     <div class="productsBox">
       <div class="wrapper">
@@ -83,11 +83,17 @@ export default {
         </template>
       </div>
     </div>
-    <app-product-modal
+    <div
+      class="productModalBox"
       v-show="productModalOpen"
-      :product="currentModalProduct"
-      class="appProductModal"
-    ></app-product-modal>
+      @click="closeProductModal"
+    >
+      <app-product-modal
+        v-show="productModalOpen"
+        :product="currentModalProduct"
+        class="appProductModal"
+      ></app-product-modal>
+    </div>
   </div>
 </template>
 
@@ -110,6 +116,13 @@ export default {
         height: 15rem;
       }
     }
+  }
+  .productModalBox{
+    position: fixed;
+    top:0;
+    width:100vw;
+    height: 100vh;
+    background-color: rgba(200, 200, 200, 0.75);
   }
 }
 @media(max-width:1024px) and (min-width: 768px){

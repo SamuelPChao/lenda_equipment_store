@@ -8,7 +8,9 @@ export default {
     AppCartItem,
   },
   data() {
-    return {};
+    return {
+      scrollPosition: 0,
+    };
   },
   computed: {
     ...mapState(useShoppingCartStore, {
@@ -19,13 +21,38 @@ export default {
   },
   methods: {
     ...mapActions(useShoppingCartStore, ["toggleModal", "deleteItem"]),
+    disableScroll() {
+      this.scrollPosition =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop ||
+        0;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${this.scrollPosition}px`;
+    },
+    resetScroll() {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      window.scrollTo(0, this.scrollPosition);
+    },
+  },
+  watch: {
+    isOpen: {
+      handler(newValue, oldValue) {
+        if (newValue) {
+          return this.disableScroll();
+        }
+        this.resetScroll();
+      },
+    },
   },
 };
 </script>
 
 <template>
-  <div class="appShoppingCart">
-    <div class="cartBox" v-show="this.isOpen">
+  <div class="appShoppingCart" v-show="isOpen" @click="toggleModal">
+    <div class="cartBox" v-show="isOpen" @click.stop>
       <svg
         @click.prevent="toggleModal"
         xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +91,11 @@ export default {
 
 <style lang="scss" scoped>
 .appShoppingCart{
+  position: fixed;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200, 0.75);
   .cartBox{
     position: fixed;
     top:15vh;
@@ -124,8 +156,9 @@ export default {
 @media(max-width:768px){
   .appShoppingCart{
     .cartBox{
+      top:25vh;
       width: 80vw;
-      height: 80vh;
+      height: 60vh;
       .cartItemBox{
         height: 80%;
       }

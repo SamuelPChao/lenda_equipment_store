@@ -31,13 +31,31 @@ export default {
     ...mapActions(useProductStore, {
       toggleProductModal: "toggleProductModal",
     }),
+    disableScroll() {
+      console.log("wtf");
+      this.scrollPosition =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop ||
+        0;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${this.scrollPosition}px`;
+    },
+    resetScroll() {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      window.scrollTo(0, this.scrollPosition);
+    },
   },
   watch: {
     productModalOpen: {
       handler(newVal, oldVale) {
         if (newVal) {
           this.showIntro = "spec";
+          return this.disableScroll();
         }
+        this.resetScroll();
       },
     },
   },
@@ -275,8 +293,9 @@ export default {
 }
 @media(max-width:768px){
   .appProductModal{
+    top:25vh;
     width: 80vw;
-    height: 80vh;
+    height: 60vh;
     .productBox{
       .productImgBox{
         height: 60%;
