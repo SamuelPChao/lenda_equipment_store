@@ -117,7 +117,6 @@ export default {
           padding:0.25rem 0.5rem;
           border: 0.075rem solid $border-color-black;
           border-radius: 0.25rem;
-          background-color: $not-that-white;
           box-shadow: 0 0 0.1rem 0.01rem $box-shadow-black;
         }
         .routerLink:hover{
