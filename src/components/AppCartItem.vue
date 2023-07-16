@@ -84,7 +84,8 @@ export default {
   height: 8rem;
   justify-content: space-evenly;
   align-items: center;
-  border-bottom: 1px solid $not-that-black;
+  border-bottom: 0.05rem solid $border-color-black;
+  padding:0 1rem;
   .deleteItemBtnBox{
     width: 10%;
     display: flex;
@@ -138,15 +139,15 @@ export default {
       padding: 0.25rem;
       text-align: center;
       font-size: 1rem;
-      border: 0.1rem solid #ccc;
+      border: 0.1rem solid $border-color;
       border-radius: 0.5rem;
-      background-color: white;
-      color: $not-that-black;
+      background-color: $component-bg-color;
     }
   }
 }
 @media(max-width:768px){
   .appCartItem{
+    padding:0 0.5rem;
     .deleteItemBtnBox{
       width: 10%;
       .deleteItemBtn{

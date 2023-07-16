@@ -1,11 +1,11 @@
 <script>
 export default {
-  name: 'AppCompanyInfo',
+  name: "AppCompanyInfo",
   props: {
     companyTitle: String,
-    companyVatId: String
-  }
-}
+    companyVatId: String,
+  },
+};
 </script>
 
 <template>
@@ -13,36 +13,26 @@ export default {
     <div class="companyInfo">
       <Form class="companyInfoForm">
         <div class="companyInfoFieldBox">
-          <h3 class="companyInfoTitle">Company Title</h3>
+          <h3 class="companyInfoTitle">公司抬頭</h3>
           <Field
             class="companyInfoInputField"
             name="companyTitle"
             type="text"
             placeholder="Please Enter Company Title"
             :value="companyTitle"
-            @input="
-              $emit(
-                'updateCompanyTitle',
-                $event.target.value
-              )
-            "
+            @input="$emit('updateCompanyTitle', $event.target.value)"
           ></Field>
           <ErrorMessage name="companyTitle" />
         </div>
         <div class="companyInfoFieldBox">
-          <h3 class="companyInfoTitle">Company Vat Id</h3>
+          <h3 class="companyInfoTitle">公司統編</h3>
           <Field
             class="companyInfoInputField"
             name="companyVatId"
             type="text"
             placeholder="Please Enter 8-digit Company Vat Id"
             :value="companyVatId"
-            @input="
-              $emit(
-                'updateCompanyVatId',
-                $event.target.value
-              )
-            "
+            @input="$emit('updateCompanyVatId', $event.target.value)"
           ></Field>
           <ErrorMessage name="companyVatId" />
         </div>
@@ -66,11 +56,12 @@ export default {
         width: 75%;
         text-align: center;
         padding:0.5rem 0 0.5rem 0;
+        font-size: 1.25rem;
       }
       .companyInfoInputField{
         width: 75%;
         height: 2rem;
-        border: 1px solid $not-that-black;
+        border: 0.1rem solid $border-color;
         border-radius: 0.25rem;
       }
     }

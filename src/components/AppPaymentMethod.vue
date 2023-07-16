@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'AppPaymentMethod'
-}
+  name: "AppPaymentMethod",
+};
 </script>
 
 <template>
@@ -39,12 +39,12 @@ export default {
   display:flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-bottom: 0.1rem solid $not-that-grey-blacker;
+  border-bottom: 0.1rem solid $border-color;
   padding: 6rem 0;
   h1{
     width: 100%;
     text-align: center;
-    color:$not-that-black-font;
+    font-size:1.5rem;
   }
   .methodBox{
     width:30%;
@@ -57,7 +57,7 @@ export default {
     h3{
       width: 100%;
       text-align: center;
-      font-size:1.5rem;
+      font-size:1.25rem;
     }
   }
 }

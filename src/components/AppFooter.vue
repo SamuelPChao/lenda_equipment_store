@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'AppFooter'
-}
+  name: "AppFooter",
+};
 </script>
 
 <template>
@@ -9,9 +9,7 @@ export default {
     <div class="storeInfoBoxs">
       <div class="storeInfoBox"></div>
       <div class="storeInfoBox">
-        <span
-          >地址: 100台灣台北市中正區市民大道一段100號</span
-        >
+        <span>地址: 100台灣台北市中正區市民大道一段100號</span>
       </div>
       <div class="storeInfoBox">
         <span>電話: 02 - 6666 - 6666</span>
@@ -20,8 +18,7 @@ export default {
         <span>營業時間: 12:00 A.M. - 12:00 P.M.</span>
       </div>
       <div class="storeInfoBox">
-        Copyright © 2023 Shih Ping Chao. All rights
-        reserved.
+        Copyright © 2023 Shih Ping Chao. All rights reserved.
       </div>
     </div>
   </div>
@@ -32,8 +29,8 @@ export default {
   margin: 0 auto;
   height: 12rem;
   width: 100%;
-  background-color: $not-that-grey-lighter;
-  border-top:0.05rem solid $not-that-grey;
+  background-color: $component-bg-color;
+  border-top:0.05rem solid $border-color;
   .storeInfoBoxs{
     padding:1rem 0;
     display: flex;
@@ -44,7 +41,7 @@ export default {
       width:100%;
       text-align:center;
       span{
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 500;
       }
     }

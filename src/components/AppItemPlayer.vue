@@ -89,8 +89,8 @@ export default {
 .appItemPlayerBox{
   width:90%;
   margin: 0 auto;
-  box-shadow: 0 0 0.5rem 0.1rem $not-that-black-shadow;
-  border:1px solid $not-that-grey-blacker;
+  box-shadow: 0 0 0.5rem 0.1rem $box-shadow-black;
+  border:1px solid $border-color;
   border-radius: 1rem;
   .itemsBox{
     position: relative;
@@ -102,39 +102,34 @@ export default {
       top:100%;
       transform: translateY(-50%);
       background-color: rgba(208, 208, 208, 0.5);
-      border:1px solid $not-that-grey-blacker;
+      border:1px solid $border-color;
       border-radius: 1rem;
-      box-shadow: 0 0 1rem 0.05rem $not-that-black-shadow;
+      box-shadow: 0 0 1rem 0.05rem $box-shadow-black;
+      .directionBtn{
+        color:$font-black;
+      }
+      .directionBtn:hover{
+        color:$font-grey;
+        background-color: $btn-hover-bg-color;
+      }
     }
     .btnLeftBox{
       left:40%;
-      .directionBtn{
-        color:$not-that-black
-      }
-      .directionBtn:hover{
-        color:$not-that-grey-blacker;
-        background-color: rgba(225,225,225,0.5);
-      }
     }
     .btnRightBox{
       right:40%;
-      .directionBtn{
-        color:$not-that-black
-      }
-      .directionBtn:hover{
-        color:$not-that-grey-blacker;
-        background-color: rgba(225,225,225,0.5);
-      }
     }
     .displayNone{
       .itemBox{
         width: 100%;
-        height: 40rem;
+        height: 32rem;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         .imgBox{
           width: 50%;
+          display: flex;
+          align-items: center;
           .itemImage{
             width: 100%;
           }
@@ -242,6 +237,7 @@ export default {
       width: 100%;
       .itemBox{
         width: 100%;
+        height: 40rem;
         padding:0.5rem;
         align-items: center;
         flex-direction: column;

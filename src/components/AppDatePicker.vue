@@ -1,26 +1,26 @@
 <script>
 export default {
-  name: 'AppDatePicker',
+  name: "AppDatePicker",
   data() {
     return {
-      componentDate: this.date
-    }
+      componentDate: this.date,
+    };
   },
   props: {
-    date: Array
+    date: Array,
   },
   watch: {
     componentDate(newValue, oldValue) {
-      this.$emit('updateDate', newValue)
-    }
-  }
-}
+      this.$emit("updateDate", newValue);
+    },
+  },
+};
 </script>
 
 <template>
   <div class="appDatePicker">
     <div class="datePickerBox">
-      <h3 class="datePickerTitle">Lease Term</h3>
+      <h3 class="datePickerTitle">租借日期</h3>
       <VueDatePicker
         class="datePicker"
         v-model="componentDate"
@@ -37,11 +37,13 @@ export default {
     padding: 2.5rem 0 2.5rem 0;
     .datePickerTitle{
       text-align: center;
+      font-size:1.25rem;
     }
     .datePicker{
       width: 75%;
       margin:1rem auto;
       border-radius: 0.25rem;
+      border:solid 0.05rem $border-color;
     }
   }
 }

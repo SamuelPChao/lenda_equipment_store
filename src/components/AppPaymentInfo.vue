@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'AppPaymentInfo'
-}
+  name: "AppPaymentInfo",
+};
 </script>
 
 <template>
@@ -9,10 +9,8 @@ export default {
     <div class="paymentInfoBox">
       <h1>匯款資訊</h1>
       <div class="infoBox">
-        <span class="info"
-          >銀行: (666) 柬埔寨銀行西港分行</span
-        ><span class="info"
-          >戶名： 鏡達攝影器材有限公司</span
+        <span class="info">銀行: (666) 柬埔寨銀行西港分行</span
+        ><span class="info">戶名： 鏡達攝影器材有限公司</span
         ><span class="info">帳號: 6666-6666-6666</span>
       </div>
     </div>
@@ -28,8 +26,8 @@ export default {
   padding: 6rem 0;
   h1{
     width: 100%;
+    font-size: 1.5rem;
     text-align: center;
-    color:$not-that-black-font;
     margin-bottom: 2rem;
   }
   .infoBox{
@@ -37,7 +35,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border:0.05rem solid $not-that-grey-blacker;
+    border:0.1rem solid $border-color;
     border-radius: 0.5rem;
     padding: 1rem;
     span{
@@ -45,7 +43,6 @@ export default {
       text-align: center;
       padding:0.5rem 0;
       font-size:1.25rem;
-      color:$not-that-black-font;
     }
   }
 }

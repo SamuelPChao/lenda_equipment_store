@@ -52,15 +52,15 @@ export default {
 .appProductBox{
   position: relative;
   margin: 0 0.5rem 0.5rem 0.5rem;
-  border: solid 1px $not-that-grey;
-  background-color: white;
-  box-shadow: 0 0 0.5rem 0.1rem $not-that-black-shadow;
+  border: solid 0.05rem $border-color;
+  background-color: $component-bg-color;
+  box-shadow: 0 0 0.5rem 0.1rem $box-shadow-black;
   .productImgBox{
     width: 100%;
     height: 50%;
     background-size: contain;
     background-position: center center;
-    background-color: $not-that-white;
+    background-color: $img-bg-color;
   }
   .productInfoBox{
     .productNameBox{
@@ -70,7 +70,6 @@ export default {
       padding: 0 0.25rem;
       .productName{
         padding: 0 0.25rem;
-        color:$not-that-black;
         font-size:1rem
         }
     }
@@ -90,7 +89,7 @@ export default {
     padding:0.5rem 0.5rem;
     .actionBtn{
       cursor: pointer;
-      color:$not-that-black
+      color:$font-black;
     }
   }
 }

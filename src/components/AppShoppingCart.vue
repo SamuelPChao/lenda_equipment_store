@@ -103,13 +103,13 @@ export default {
     transform:translateX(-50%);
     width: 32rem;
     height: 32rem;
-    background-color: $not-that-white;
-    border: solid 1px $not-that-grey;
+    background-color: $component-bg-color;
+    border: solid 0.1rem $border-color;
     border-radius: 0.5rem;
-    box-shadow: 0 0 2rem 0.1rem $not-that-black-shadow;
+    box-shadow: 0 0 2rem 0.1rem $box-shadow-black;
     .cancelBtn{
       position: fixed;
-      background-color: $not-that-white;
+      background-color: $component-bg-color;
       border-radius: 16px;
       right: -0.9rem;
       top:-1.2rem;
@@ -128,7 +128,6 @@ export default {
       position: fixed;
       bottom: 0;
       padding:0.5rem 0;
-      background-color: $not-that-grey-lighter;
       .sumInfoBox{
         display: flex;
         width: 100%;
@@ -142,13 +141,17 @@ export default {
         justify-content: center;
         align-items: center;
         .checkoutBtn{
-          width: 90% ;
+          width: 50% ;
           display: block ;
-          border: solid 1px $not-that-black;
+          border: solid 0.075rem $font-black;
           border-radius: 0.5rem;
           text-align: center;
           font-size: 1.5rem;
         }
+      }
+      .checkoutBtn:hover{
+        background-color: $font-black;
+        color:$font-white;
       }
     }
   }

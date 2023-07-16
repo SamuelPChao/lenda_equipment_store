@@ -33,7 +33,7 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   padding:0.5rem 0.5rem;
-  border-bottom: 0.05rem solid $not-that-grey-blacker;
+  border-bottom: 0.05rem solid $border-color;
   .accessoryImgBox{
     width:30%;
     display: flex;

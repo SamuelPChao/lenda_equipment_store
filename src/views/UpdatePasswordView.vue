@@ -1,25 +1,22 @@
 <script>
-import useUserStore from '../stores/user'
-import { mapActions } from 'pinia'
+import useUserStore from "../stores/user";
+import { mapActions } from "pinia";
 export default {
-  name: 'UpdatePasswordView',
+  name: "UpdatePasswordView",
   methods: {
     ...mapActions(useUserStore, {
-      updateUserPassword: 'updateUserPassword'
+      updateUserPassword: "updateUserPassword",
     }),
-    onSubmit() {}
-  }
-}
+    onSubmit() {},
+  },
+};
 </script>
 <template>
   <div class="updatePasswordView">
     <div class="formBox">
-      <Form
-        class="updatePasswordForm"
-        @submit="updateUserPassword"
-      >
+      <Form class="updatePasswordForm" @submit="updateUserPassword">
         <div class="fieldBox">
-          <span>Current Password</span>
+          <span>目前密碼</span>
           <Field
             name="passwordCurrent"
             type="password"
@@ -27,13 +24,10 @@ export default {
             class="inputField"
             placeholder="Please Enter Password"
           />
-          <ErrorMessage
-            name="passwordCurrent"
-            class="errorMessage"
-          />
+          <ErrorMessage name="passwordCurrent" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <span>Password</span>
+          <span>新密碼</span>
           <Field
             name="password"
             type="password"
@@ -41,13 +35,10 @@ export default {
             class="inputField"
             placeholder="Please Enter Password"
           />
-          <ErrorMessage
-            name="password"
-            class="errorMessage"
-          />
+          <ErrorMessage name="password" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <span>Confirm Password</span>
+          <span>確認新密碼</span>
           <Field
             name="passwordConfirm"
             type="password"
@@ -55,22 +46,12 @@ export default {
             class="inputField"
             placeholder="Please Confirm Password"
           />
-          <ErrorMessage
-            name="passwordConfirm"
-            class="errorMessage"
-          />
+          <ErrorMessage name="passwordConfirm" class="errorMessage" />
         </div>
         <div class="actionBtnsBox">
-          <button type="submit" class="actionBtn">
-            Submit
-          </button>
-          <router-link
-            :to="{ name: 'user-info' }"
-            class="routerLink"
-          >
-            <button class="actionBtn">
-              Cancel Edit
-            </button></router-link
+          <button type="submit" class="actionBtn">確認修改</button>
+          <router-link :to="{ name: 'user-info' }" class="routerLink">
+            <button class="actionBtn">取消修改</button></router-link
           >
         </div>
       </Form>
@@ -96,7 +77,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        border-bottom: solid grey 1px;
+        border-bottom: solid $border-color 0.075rem;
         font-size: 1rem;
         margin:0.5rem auto;
         span{
@@ -104,7 +85,7 @@ export default {
         }
         .inputField{
           width: 75%;
-          border: 1px solid grey;
+          border: solid $border-color 0.075rem;
           border-radius: 0.25rem;
           text-align: left;
           margin:0.25rem 0
@@ -112,7 +93,7 @@ export default {
         .errorMessage{
           width: 100%;
           text-align: center;
-          color:red;
+          color:$error-msg-color;
         }
       }
       .actionBtnsBox{
@@ -125,14 +106,14 @@ export default {
           font-size: 1rem;
           text-align: center;
           border-radius: 0.5rem;
-          border: 0.1rem solid black;
+          border: 0.1rem solid $border-color-black;
           transition: all 0.2s linear;
           padding: 0.25rem 0;
           margin: 0.5rem 0;
         }
         .actionBtn:hover{
-          background-color: black;
-          color:white
+          background-color: $font-black;
+          color:$font-white
         }
       }
     }

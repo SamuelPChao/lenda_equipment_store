@@ -118,10 +118,10 @@ export default {
     .newsBox{
       position: relative;
       width: 30%;
-      border: 0.05rem solid $not-that-grey;
+      border: 0.05rem solid $border-color;
       border-radius: 0.5rem;
       margin:0 1rem 1rem 1rem;
-      box-shadow: 0 0 1rem 0.1rem $not-that-black-shadow;
+      box-shadow: 0 0 1rem 0.1rem $box-shadow-black;
       cursor: pointer;
 
       .newsImgBox{
@@ -129,7 +129,7 @@ export default {
         .newsImg{
           width: 100%;
           height: 15rem;
-          border: 0.1rem solid $not-that-grey;
+          border: 0.05rem solid $border-color;
           border-radius: 0.5rem;
         }
       }

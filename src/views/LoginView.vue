@@ -1,30 +1,30 @@
 <script>
-import { mapActions } from 'pinia'
-import useUserStore from '../stores/user'
+import { mapActions } from "pinia";
+import useUserStore from "../stores/user";
 
 export default {
-  name: 'LoginView',
+  name: "LoginView",
   methods: {
     ...mapActions(useUserStore, {
-      loginUser: 'loginUser'
+      loginUser: "loginUser",
     }),
     async onSubmit(values, actions) {
       try {
-        const res = await this.loginUser(values, actions)
-        if (res) this.$router.push({ name: 'home' })
+        const res = await this.loginUser(values, actions);
+        if (res) this.$router.push({ name: "home" });
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <template>
   <div class="loginView">
     <div class="loginFormBox">
       <Form @submit="onSubmit" class="loginForm">
         <div class="fieldBox">
-          <h3 class="fieldTitle">Identification</h3>
+          <h3 class="fieldTitle">身份證號碼</h3>
           <Field
             name="identification"
             type="text"
@@ -33,13 +33,10 @@ export default {
             placeholder="Please Enter ID"
           >
           </Field>
-          <ErrorMessage
-            name="identification"
-            class="errorMessage"
-          />
+          <ErrorMessage name="identification" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Password</h3>
+          <h3 class="fieldTitle">密碼</h3>
           <Field
             name="password"
             type="password"
@@ -47,15 +44,10 @@ export default {
             class="inputField"
             placeholder="Please Enter Password"
           />
-          <ErrorMessage
-            name="password"
-            class="errorMessage"
-          />
+          <ErrorMessage name="password" class="errorMessage" />
         </div>
         <div class="actionBtnBox">
-          <button type="submit" class="actionBtn">
-            Submit
-          </button>
+          <button type="submit" class="actionBtn">登入會員</button>
         </div>
       </Form>
     </div>
@@ -72,9 +64,9 @@ export default {
       width: 60%;
       padding: 2rem;
       margin:0 auto;
-      border: 0.1rem $not-that-grey-blacker solid;
+      border: 0.1rem $border-color solid;
       border-radius: 0.25rem;
-      box-shadow: 0 0 1rem 0.1rem $not-that-black-shadow;
+      box-shadow: 0 0 1rem 0.1rem $box-shadow-black;
       .fieldBox{
         width: 100%;
         display: flex;
@@ -83,25 +75,25 @@ export default {
         justify-content: left;
         align-items: center;
         padding:2rem 0.5rem;
-        border-bottom: 1px solid $not-that-grey-blacker;
+        border-bottom: 0.1rem solid $border-color;
         .fieldTitle{
           width: 100%;
           text-align: center;
           padding:0 0 1rem 0;
-          color:$not-that-black
+          font-size:1.5rem
         }
         .inputField{
           width:90%;
           height: 2.5rem;
           font-size: 1.25rem;
-          border: 0.1rem solid $not-that-grey-blacker;
+          border: 0.1rem solid $border-color;
           border-radius: 0.5rem;
         }
         .errorMessage{
           width: 90%;
           display: block;
           padding:1rem 0;
-          color:red;
+          color:$error-msg-color;
           text-align: center;
         }
       }
@@ -113,14 +105,13 @@ export default {
         .actionBtn{
           width: 25%;
           font-size: 1.25rem;
-          color:$not-that-black;
-          border: 0.1rem solid $not-that-grey-blacker;
+          border: 0.1rem solid $font-black;
           border-radius: 0.5rem;
           transition: all 0.2s linear;
         }
         .actionBtn:hover{
-          background-color: $not-that-black;
-          color:$not-that-white
+          background-color: $font-black;
+          color:$font-white
         }
       }
     }
@@ -139,7 +130,7 @@ export default {
         }
         .actionBtnBox{
           .actionBtn{
-            width: 40%;
+            width: 60%;
           }
         }
       }

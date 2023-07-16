@@ -122,7 +122,7 @@ export default {
     top:0;
     width:100vw;
     height: 100vh;
-    background-color: rgba(200, 200, 200, 0.75);
+    background-color: $modal-bg-pad-color;
   }
 }
 @media(max-width:1024px) and (min-width: 768px){

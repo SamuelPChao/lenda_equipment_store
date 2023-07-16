@@ -82,7 +82,7 @@ export default {
 <style lang="scss" scoped>
 .homeView{
   section{
-    border-bottom: 0.1rem solid $not-that-grey-blacker;
+    border-bottom: 0.1rem solid $border-color;
     margin-bottom: 2rem;
   }
   .productInfoSection{

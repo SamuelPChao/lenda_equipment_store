@@ -52,10 +52,10 @@ export default {
     </div>
     <div class="linkBox">
       <RouterLink :to="{ name: 'product' }"
-        ><v-btn variant="text"> Product </v-btn></RouterLink
+        ><v-btn variant="text"> 攝影器材 </v-btn></RouterLink
       >
       <RouterLink :to="{ name: 'news' }"
-        ><v-btn variant="text"> News </v-btn></RouterLink
+        ><v-btn variant="text"> 最新消息 </v-btn></RouterLink
       >
     </div>
     <div class="cartBox">
@@ -78,20 +78,20 @@ export default {
     </div>
     <div class="authBox">
       <RouterLink v-if="!isLoggedIn" :to="{ name: 'login' }" class="routerLink"
-        ><v-btn variant="text"> Login </v-btn></RouterLink
+        ><v-btn variant="text"> 登入 </v-btn></RouterLink
       >
       <RouterLink v-if="!isLoggedIn" :to="{ name: 'signup' }" class="routerLink"
-        ><v-btn variant="text"> Sign Up </v-btn></RouterLink
+        ><v-btn variant="text"> 註冊 </v-btn></RouterLink
       >
       <RouterLink v-if="isLoggedIn" :to="{ name: 'account' }" class="routerLink"
-        ><v-btn variant="text"> My Account </v-btn></RouterLink
+        ><v-btn variant="text"> 會員專區 </v-btn></RouterLink
       >
       <RouterLink
         v-if="isLoggedIn"
         :to="{ name: 'home' }"
         @click="onLogout"
         class="routerLink"
-        ><v-btn variant="text"> Logout </v-btn></RouterLink
+        ><v-btn variant="text"> 登出 </v-btn></RouterLink
       >
     </div>
   </header>
@@ -144,25 +144,27 @@ export default {
   >
     <div class="linkBox">
       <RouterLink :to="{ name: 'product' }" class="routerLink">
-        Product
+        攝影器材
       </RouterLink>
-      <RouterLink :to="{ name: 'news' }" class="routerLink"> News </RouterLink>
+      <RouterLink :to="{ name: 'news' }" class="routerLink">
+        最新消息
+      </RouterLink>
       <RouterLink v-if="!isLoggedIn" :to="{ name: 'login' }" class="routerLink">
-        Login
+        登入
       </RouterLink>
       <RouterLink
         v-if="!isLoggedIn"
         :to="{ name: 'signup' }"
         class="routerLink"
       >
-        Sign Up
+        註冊
       </RouterLink>
       <RouterLink
         v-if="isLoggedIn"
         :to="{ name: 'account' }"
         class="routerLink"
       >
-        My Account
+        會員專區
       </RouterLink>
       <RouterLink
         v-if="isLoggedIn"
@@ -170,7 +172,7 @@ export default {
         @click="onLogout"
         class="routerLink"
       >
-        Logout
+        登出
       </RouterLink>
     </div>
   </div>
@@ -178,9 +180,9 @@ export default {
 
 <style lang="scss" scoped>
 .navheader, .mobileNavHeader{
-  background-color: rgb(35, 35, 35);
+  background-color: $header-bg-color;
   z-index: 1000 !important;
-  color:$not-that-white;
+  color:$font-white;
   display: flex;
   position: fixed;
   align-items: center;
@@ -196,7 +198,7 @@ export default {
 .navheader {
   width: 100%;
   height: 5rem;
-  box-shadow: 0 0 0.5rem 0.5rem $not-that-black-shadow;
+  box-shadow: 0 0 0.5rem 0.5rem $box-shadow-black;
   justify-content: center;
   .logoBox {
     width: 10%;
@@ -206,7 +208,7 @@ export default {
       .logo {
         width: 4rem;
         height: 4rem;
-        background-color: red;
+        background-color: $logo-bg-color;
         border-radius: 100%;
         font-style: italic;
         display: flex;
@@ -232,16 +234,16 @@ export default {
       cursor: pointer;
     }
     .carticon:hover{
-      background-color: $not-that-grey;
-      border-radius:0.25rem;
+      background-color: $btn-hover-bg-color;
+      border-radius:100%;
     }
     .cartItemQuantity{
       position: absolute;
-      right:0.75rem;
+      transform: translateX(50%);
       bottom: 1rem;
-      background-color: red;
+      background-color: $logo-bg-color;
       padding: 0.2rem 0.75rem;
-      border-radius: 5rem;
+      border-radius: 100%;
     }
   }
   .authBox{
@@ -298,7 +300,7 @@ export default {
         .logo {
           width: 4rem;
           height: 4rem;
-          background-color: red;
+          background-color: $logo-bg-color;
           border-radius: 100%;
           font-style: italic;
           display: flex;
@@ -312,6 +314,13 @@ export default {
       width: 10%;
       display:flex;
       justify-content: right;
+      .cartItemQuantity{
+        position: absolute;
+        transform: translateX(50%);
+        background-color: $logo-bg-color;
+        padding: 0.2rem 0.75rem;
+        border-radius: 100%;
+      }
     }
     .mobileNavMenuBtnBox{
       width:10%;
@@ -327,9 +336,9 @@ export default {
     width: 100vw;
     height: 15rem;
     z-index: 1000 !important;
-    background-color:$mobile-menu;
+    background-color:$mobile-menu-bg-color;
     top:6rem;
-    border: 0.1rem solid $not-that-black;
+    border: 0.1rem solid $border-color-black;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     .linkBox{
@@ -345,7 +354,7 @@ export default {
         text-align: center;
         font-size: 1.25rem;
         padding: 0.25rem;
-        border: 0.1rem solid $not-that-black;
+        border: 0.1rem solid $border-color-black;
         border-radius: 0.5rem;
       }
       

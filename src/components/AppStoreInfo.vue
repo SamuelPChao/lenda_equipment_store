@@ -1,7 +1,7 @@
 <script>
 export default {
-  name: 'AppStoreInfo'
-}
+  name: "AppStoreInfo",
+};
 </script>
 
 <template>
@@ -20,9 +20,7 @@ export default {
             d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
           />
         </svg>
-        <h3 class="storeInfo">
-          100台灣台北市中正區市民大道一段100號
-        </h3>
+        <h3 class="storeInfo">100台灣台北市中正區市民大道一段100號</h3>
       </div>
       <div class="storeInfoBox">
         <svg
@@ -52,9 +50,7 @@ export default {
             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
           />
         </svg>
-        <h3 class="storeInfo">
-          營業時間: 12:00 A.M. - 12:00 P.M.
-        </h3>
+        <h3 class="storeInfo">營業時間: 12:00 A.M. - 12:00 P.M.</h3>
       </div>
     </div>
   </div>
@@ -82,7 +78,7 @@ export default {
     }  
 }
 .storeInfoBoxs> :nth-child(2){
-    border-left:0.1rem solid $not-that-grey-blacker;
-    border-right:0.1rem solid $not-that-grey-blacker;
+    border-left:0.1rem solid $border-color;
+    border-right:0.1rem solid $border-color;
 }
 </style>

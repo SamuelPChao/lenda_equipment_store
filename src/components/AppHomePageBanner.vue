@@ -57,7 +57,7 @@ export default {
     .bannerSectionBox{
       position: relative;
       width: 33.33%;
-      border:0.1rem $not-that-white solid;
+      border:0.1rem $font-white solid;
       color:transparent;
       padding: 1rem;
       cursor: pointer;
@@ -68,11 +68,11 @@ export default {
         .sectionIdBox{
             font-size: 8rem;
             font-style: italic;
-            -webkit-text-stroke: 0.15rem $not-that-white;
+            -webkit-text-stroke: 0.15rem $font-white;
         }
         .sectionTitleBox{
           font-size: 5rem;
-          -webkit-text-stroke: 0.1rem $not-that-white;
+          -webkit-text-stroke: 0.1rem $font-white;
         }
         .sectionLinkBox{
           transition: all 0.5 linear;
@@ -81,8 +81,8 @@ export default {
             width: 16rem;
             height: 2.5rem;
             font-size: 1.5rem;
-            color:$not-that-white;
-            background-color: $not-that-grey;
+            color:$font-white;
+            background-color: $btn-hover-bg-color;
             border-radius: 0.5rem;
           }
         }

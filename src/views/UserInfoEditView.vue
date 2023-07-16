@@ -1,29 +1,29 @@
 <script>
-import useUserStore from '../stores/user'
-import { mapState, mapActions } from 'pinia'
-import '../includes/validation'
+import useUserStore from "../stores/user";
+import { mapState, mapActions } from "pinia";
+import "../includes/validation";
 export default {
-  name: 'UserInfoEditView',
+  name: "UserInfoEditView",
   data() {
     return {
-      user: this.currentUser
-    }
+      user: this.currentUser,
+    };
   },
   computed: {
     ...mapState(useUserStore, {
-      currentUser: 'currentUser'
-    })
+      currentUser: "currentUser",
+    }),
   },
   methods: {
     ...mapActions(useUserStore, {
-      updateUserInfo: 'updateUserInfo'
+      updateUserInfo: "updateUserInfo",
     }),
     async onSubmit(values, actions) {
-      const res = await this.updateUserInfo(values, actions)
-      if (res) this.$router.push({ name: 'user-info' })
-    }
-  }
-}
+      const res = await this.updateUserInfo(values, actions);
+      if (res) this.$router.push({ name: "user-info" });
+    },
+  },
+};
 </script>
 <template>
   <div class="userInfoEditView">
@@ -34,7 +34,7 @@ export default {
         @submit="onSubmit"
       >
         <div class="fieldBox">
-          <span class="infoField">Email</span>
+          <span class="infoField">電子信箱</span>
           <Field
             name="email"
             type="email"
@@ -44,7 +44,7 @@ export default {
           <ErrorMessage name="email" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <span class="infoField">Phone Number</span>
+          <span class="infoField">手機號碼</span>
           <Field
             name="phone"
             type="text"
@@ -55,7 +55,7 @@ export default {
           <ErrorMessage name="phone" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <span class="infoField">Address</span>
+          <span class="infoField">地址</span>
           <Field
             name="address"
             type="text"
@@ -63,22 +63,12 @@ export default {
             class="inputField"
             placeholder="Please Enter Address"
           ></Field>
-          <ErrorMessage
-            name="address"
-            class="errorMessage"
-          />
+          <ErrorMessage name="address" class="errorMessage" />
         </div>
         <div class="actionBtnsBox">
-          <button type="submit" class="actionBtn">
-            Submit
-          </button>
-          <router-link
-            :to="{ name: 'user-info' }"
-            class="routerLink"
-          >
-            <button class="actionBtn">
-              Cancel Edit
-            </button></router-link
+          <button type="submit" class="actionBtn">確認修改</button>
+          <router-link :to="{ name: 'user-info' }" class="routerLink">
+            <button class="actionBtn">取消修改</button></router-link
           >
         </div>
       </Form>
@@ -104,7 +94,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        border-bottom: solid grey 1px;
+        border-bottom: solid $border-color 0.075rem;
         font-size: 1rem;
         margin:0.5rem auto;
         .infoField{
@@ -112,7 +102,7 @@ export default {
         }
         .inputField{
           width: 75%;
-          border: 1px solid grey;
+          border: solid $border-color 0.075rem;
           border-radius: 0.25rem;
           text-align: left;
           margin:0.25rem 0
@@ -120,7 +110,7 @@ export default {
         .errorMessage{
           width: 100%;
           text-align: center;
-          color:red;
+          color:$error-msg-color;
         }
       }
       .actionBtnsBox{
@@ -133,14 +123,14 @@ export default {
           font-size: 1rem;
           text-align: center;
           border-radius: 0.5rem;
-          border: 0.1rem solid black;
+          border: 0.1rem solid $border-color-black;
           transition: all 0.2s linear;
           padding: 0.25rem 0;
           margin: 0.5rem 0;
         }
         .actionBtn:hover{
-          background-color: black;
-          color:white
+          background-color: $font-black;
+          color:$font-white;
         }
       }
     }

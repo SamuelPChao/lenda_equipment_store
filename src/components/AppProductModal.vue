@@ -30,6 +30,7 @@ export default {
     }),
     ...mapActions(useProductStore, {
       toggleProductModal: "toggleProductModal",
+      closeProductModal: "closeProductModal",
     }),
     disableScroll() {
       console.log("wtf");
@@ -58,6 +59,9 @@ export default {
         this.resetScroll();
       },
     },
+  },
+  beforeUnmount() {
+    this.closeProductModal();
   },
 };
 </script>
@@ -208,14 +212,14 @@ export default {
   transform:translateX(-50%);
   width: 32rem;
   height: 32rem;
-  background-color: $not-that-white;
-  border: solid 1px $not-that-grey;
+  background-color: $component-bg-color;
+  border: solid 0.1rem $border-color;
   border-radius: 0.5rem;
-  box-shadow: 0 0 2rem 0.1rem $not-that-black-shadow;
+  box-shadow: 0 0 2rem 0.1rem $box-shadow-black;
   .closeBtnBox{
     .closeBtn{
       position: fixed;
-      background-color: $not-that-white;
+      background-color: $component-bg-color;
       border-radius: 1rem;
       right:-0.9rem;
       top:-1.2rem;
@@ -252,7 +256,7 @@ export default {
       align-items: flex-end;
       .actionBtn{
         cursor: pointer;
-        color:$not-that-black
+        color:$font-black
       }
     }
   }
@@ -265,7 +269,7 @@ export default {
       display:flex;
       flex-wrap: wrap;
       padding: 0 0.5rem;
-      border-bottom: 0.05rem solid $not-that-grey-blacker;
+      border-bottom: 0.05rem solid $border-color;
       .productIntro{
         list-style: none;
         width:25%;
@@ -282,7 +286,7 @@ export default {
         span{
           width:100%;
           padding: 0.25rem 0;
-          border-bottom: 0.05rem solid $not-that-grey-blacker;
+          border-bottom: 0.05rem solid $border-color;
           a{
             padding: 0 0.5rem 0 0;
           }
@@ -301,7 +305,7 @@ export default {
         height: 60%;
         .productImg{
           width: auto;
-          height:60%;
+          height:100%;
         }
       }
       .productInfoBox{

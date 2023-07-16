@@ -1,53 +1,39 @@
 <script>
 export default {
-  name: 'AppSideMenu',
+  name: "AppSideMenu",
   data() {
     return {
       open: [],
       products: [
-        ['camera', ['arri', 'red', 'sony', 'canon']],
+        ["camera", ["arri", "red", "sony", "canon"]],
         [
-          'lens',
-          [
-            'arri',
-            'angenieux',
-            'cooke',
-            'canon',
-            'leica',
-            'sony',
-            'zeiss'
-          ]
+          "lens",
+          ["arri", "angenieux", "cooke", "canon", "leica", "sony", "zeiss"],
         ],
-        ['battery', ['sony', 'canon', 'fxlion']],
-        [
-          'storage',
-          ['sony', 'sandisk', 'angelbird', 'wise', 'red']
-        ],
-        ['monitor', ['smallhd']],
-        ['follow-focus', ['tilta', 'cmotion', 'arri']],
-        ['wireless-signal', ['hollyland', 'swit']],
-        ['tripod', ['teris', 'sachtler', 'oconnor']],
-        ['matte-box', ['arri', 'tilta', 'smallrig']],
-        ['filter', ['tiffen', 'schneider']]
-      ]
-    }
+        ["battery", ["sony", "canon", "fxlion"]],
+        ["storage", ["sony", "sandisk", "angelbird", "wise", "red"]],
+        ["monitor", ["smallhd"]],
+        ["follow-focus", ["tilta", "cmotion", "arri"]],
+        ["wireless-signal", ["hollyland", "swit"]],
+        ["tripod", ["teris", "sachtler", "oconnor"]],
+        ["matte-box", ["arri", "tilta", "smallrig"]],
+        ["filter", ["tiffen", "schneider"]],
+      ],
+    };
   },
   watch: {
     $route(to, from) {
-      if (to.name === 'product') this.open = []
-    }
-  }
-}
+      if (to.name === "product") this.open = [];
+    },
+  },
+};
 </script>
 
 <template>
-  <div class="sideMenuBox">
+  <div class="AppSideMenu">
     <v-card class="sidemenu">
       <v-list v-model:opened="open">
-        <template
-          v-for="[type, brands] in products"
-          :key="type"
-        >
+        <template v-for="[type, brands] in products" :key="type">
           <v-list-group :value="type">
             <template v-slot:activator="{ props }">
               <v-list-item
@@ -64,7 +50,7 @@ export default {
               :value="type + brand"
               :to="{
                 name: 'category-brand',
-                params: { type: type, brand: brand }
+                params: { type: type, brand: brand },
               }"
             >
             </v-list-item>

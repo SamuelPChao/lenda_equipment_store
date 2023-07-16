@@ -1,93 +1,71 @@
 <script>
 export default {
-  name: 'AppBookingItem',
+  name: "AppBookingItem",
   computed: {
     startDate() {
-      return this.booking.date[0]
+      return this.booking.date[0];
     },
     endDate() {
-      return this.booking.date[1]
-    }
+      return this.booking.date[1];
+    },
   },
   props: {
     booking: Object,
-    isDetail: Boolean
+    isDetail: Boolean,
   },
   methods: {
     dateToLocaleString(date) {
-      return new Date(date).toLocaleString('ch-tw', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit'
-      })
-    }
-  }
-}
+      return new Date(date).toLocaleString("ch-tw", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+      });
+    },
+  },
+};
 </script>
 
 <template>
   <div class="appBookingItem">
     <div class="bookingInfoBox">
       <div class="bookingDateBox">
-        <h3 class="bookingId">Order ID {{ booking.id }}</h3>
+        <h3 class="bookingId">訂單編號: {{ booking.id }}</h3>
         <span class="bookingDate"
           >訂單日期:
           {{ dateToLocaleString(booking.createAt) }}
         </span>
         <span class="bookingDate">
           租借日期:
-          {{
-            booking.date
-              ? dateToLocaleString(booking.date[0])
-              : ''
-          }}</span
+          {{ booking.date ? dateToLocaleString(booking.date[0]) : "" }}</span
         >
         <span class="bookingDate">
           歸還日期:
-          {{
-            booking.date
-              ? dateToLocaleString(booking.date[1])
-              : ''
-          }}</span
+          {{ booking.date ? dateToLocaleString(booking.date[1]) : "" }}</span
         >
       </div>
       <div class="bookingPriceInfoBox">
-        <span
-          class="bookingCompanyTitle"
-          v-if="booking.companyTitle"
+        <span class="bookingCompanyTitle" v-if="booking.companyTitle"
           >公司名稱:
-          {{
-            booking.companyTitle ? booking.companyTitle : ''
-          }}</span
+          {{ booking.companyTitle ? booking.companyTitle : "" }}</span
         >
-        <span
-          class="bookingCompanyVatId"
-          v-if="booking.companyVatId"
+        <span class="bookingCompanyVatId" v-if="booking.companyVatId"
           >公司統編:
-          {{
-            booking.companyVatId ? booking.companyVatId : ''
-          }}</span
+          {{ booking.companyVatId ? booking.companyVatId : "" }}</span
         >
-        <span class="bookingPrice"
-          >器材總價: NT${{ booking.totalPrice }}</span
-        >
+        <span class="bookingPrice">器材總價: NT${{ booking.totalPrice }}</span>
       </div>
       <div class="bookingStatusBox">
-        <span
-          class="bookingStatus"
-          v-if="!booking.canceled"
-          >{{ booking.checked ? '已確認' : '未確認' }}</span
-        >
-        <span v-if="booking.canceled" class="bookingStatus"
-          >已取消</span
-        >
+        <span class="bookingStatus" v-if="!booking.canceled">{{
+          booking.checked ? "已確認" : "未確認"
+        }}</span>
+        <span v-if="booking.canceled" class="bookingStatus">已取消</span>
         <router-link
           v-if="isDetail"
           class="routerLink"
           :to="{
             name: 'order-detail',
-            params: { orderId: booking.id }
+            params: { orderId: booking.id },
           }"
         >
           訂單詳情</router-link
@@ -102,14 +80,13 @@ export default {
   .bookingInfoBox{
     width: 85%;
     padding: 1rem;
-    border: 0.1rem $not-that-grey-blacker solid;
+    border: 0.1rem $border-color solid;
     margin:1rem auto;
     border-radius: 0.25rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    color:$not-that-black;
-    box-shadow: 0 0 0.5rem 0.1rem $not-that-black-shadow;
+    box-shadow: 0 0 0.5rem 0.1rem $box-shadow-black;
     .bookingDateBox{
       width: 40%;
       display: flex;
@@ -127,7 +104,6 @@ export default {
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      color:black;
       .bookingPrice, .bookingCompanyTitle, .bookingCompanyVatId{
         width: 100%;
       }
@@ -139,14 +115,14 @@ export default {
       width: 25%;
         .routerLink{
           padding:0.25rem 0.5rem;
-          border: 0.075rem solid $not-that-black;
+          border: 0.075rem solid $border-color-black;
           border-radius: 0.25rem;
           background-color: $not-that-white;
-          box-shadow: 0 0 0.1rem 0.01rem $not-that-black-shadow;
+          box-shadow: 0 0 0.1rem 0.01rem $box-shadow-black;
         }
         .routerLink:hover{
-          background-color: $not-that-grey-blacker;
-          color:$not-that-white;
+          background-color: $font-black;
+          color:$font-white;
         }
     }
   }
@@ -157,14 +133,14 @@ export default {
     .bookingInfoBox{
       .bookingDateBox{
         .bookingId{
-          border-bottom: 0.1rem solid $not-that-grey-blacker;
+          border-bottom: 0.1rem solid $border-color;
         }
         width: 100%;
-        border-bottom: 0.1rem solid $not-that-grey-blacker;
+        border-bottom: 0.1rem solid $border-color;
       }
       .bookingPriceInfoBox{
         width: 100%;
-        border-bottom: 0.1rem solid $not-that-grey-blacker;
+        border-bottom: 0.1rem solid $border-color;
       }
       .bookingStatusBox{
         width: 100%;

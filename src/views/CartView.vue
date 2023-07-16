@@ -1,76 +1,71 @@
 <script>
-import { mapState, mapActions } from 'pinia'
-import useShoppingCartStore from '../stores/shoppingCart'
-import useBookingStore from '../stores/booking'
-import useUserStore from '../stores/user'
-import AppCartItem from '../components/AppCartItem.vue'
-import AppCompanyInfo from '../components/AppCompanyInfo.vue'
-import AppDatePicker from '../components/AppDatePicker.vue'
+import { mapState, mapActions } from "pinia";
+import useShoppingCartStore from "../stores/shoppingCart";
+import useBookingStore from "../stores/booking";
+import useUserStore from "../stores/user";
+import AppCartItem from "../components/AppCartItem.vue";
+import AppCompanyInfo from "../components/AppCompanyInfo.vue";
+import AppDatePicker from "../components/AppDatePicker.vue";
 export default {
-  name: 'CartView',
+  name: "CartView",
   data() {
-    const startDate = new Date()
-    const endDate = new Date(
-      startDate.getTime() + 24 * 60 * 60 * 1000
-    )
+    const startDate = new Date();
+    const endDate = new Date(startDate.getTime() + 24 * 60 * 60 * 1000);
     return {
       bookingInfo: {
         companyTitle: null,
         companyVatId: null,
-        date: [startDate, endDate]
-      }
-    }
+        date: [startDate, endDate],
+      },
+    };
   },
   components: {
     AppCartItem,
     AppCompanyInfo,
-    AppDatePicker
+    AppDatePicker,
   },
   computed: {
     ...mapState(useShoppingCartStore, {
-      cart: 'cart',
-      totalPrice: 'totalPrice'
+      cart: "cart",
+      totalPrice: "totalPrice",
     }),
     ...mapState(useUserStore, {
-      currentUser: 'currentUser'
+      currentUser: "currentUser",
     }),
     duration() {
       return this.durationCalculator(
         this.bookingInfo.date[0],
         this.bookingInfo.date[1]
-      )
-    }
+      );
+    },
   },
   methods: {
     ...mapActions(useBookingStore, {
-      sendBooking: 'sendBooking',
-      durationCalculator: 'durationCalculator'
+      sendBooking: "sendBooking",
+      durationCalculator: "durationCalculator",
     }),
     ...mapActions(useShoppingCartStore, {
-      modifyItemQuantity: 'modifyItemQuantity',
-      deleteItem: 'deleteItem',
-      clearCart: 'clearCart'
+      modifyItemQuantity: "modifyItemQuantity",
+      deleteItem: "deleteItem",
+      clearCart: "clearCart",
     }),
     updateValue(value, target) {
-      this.bookingInfo[target] = value
+      this.bookingInfo[target] = value;
     },
     async onSubmit(cart, bookingObject) {
-      const res = await this.sendBooking(
-        cart,
-        bookingObject
-      )
+      const res = await this.sendBooking(cart, bookingObject);
       if (res) {
-        this.clearCart()
-        alert('Booking Sent')
+        this.clearCart();
+        alert("Booking Sent");
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <template>
   <div class="cartView">
     <div v-if="cart.length > 0" class="cart">
-      <h3 class="cartTitle">Confirm Your Equipment</h3>
+      <h3 class="cartTitle">請確認您的器材</h3>
       <div class="cartItemsBox">
         <app-cart-item
           @quantityChange="modifyItemQuantity(i, $event)"
@@ -84,13 +79,9 @@ export default {
         <app-company-info
           class="appCompanyInfo"
           :companyTitle="bookingInfo.companyTitle"
-          @updateCompanyTitle="
-            updateValue($event, 'companyTitle')
-          "
+          @updateCompanyTitle="updateValue($event, 'companyTitle')"
           :companyVatId="bookingInfo.companyVatId"
-          @updateCompanyVatId="
-            updateValue($event, 'companyVatId')
-          "
+          @updateCompanyVatId="updateValue($event, 'companyVatId')"
         ></app-company-info>
         <app-date-picker
           class="appDatePicker"
@@ -107,11 +98,11 @@ export default {
           @click.prevent="
             onSubmit(cart, {
               ...bookingInfo,
-              user: currentUser.id
+              user: currentUser.id,
             })
           "
         >
-          Send Booking
+          送出訂單
         </button>
       </div>
     </div>
@@ -121,12 +112,10 @@ export default {
         src="https://www.mgrstore.net/assets/main/img/cart_empty_img.svg"
         alt="emptyCart"
       />
-      <h1 class="cartStatusTitle">Cart Is Empty</h1>
+      <h1 class="cartStatusTitle">購物車是空的</h1>
       <div class="actionBtnsBox">
         <router-link :to="{ name: 'product' }"
-          ><button class="actionBtn">
-            Check Out Equipment
-          </button></router-link
+          ><button class="actionBtn">查看器材</button></router-link
         >
       </div>
     </div>
@@ -139,19 +128,20 @@ export default {
     width:60%;
     margin: 5rem auto 0 auto;
     .cartTitle{
+      font-size: 1.5rem;
       text-align: center;
+      border-bottom:  0.1rem solid $border-color-black;
     }
     .cartItemsBox{
-      border-top: 1px solid $not-that-black;
       width: 100%;
     }
     .cartInfoBox{
       width: 100%;
       .appCompanyInfo{
-        border-bottom: 0.05rem solid $not-that-black;
+        border-bottom: 0.1rem solid $border-color-black;
       }
       .appDatePicker{
-        border-bottom: 0.05rem solid $not-that-black;
+        border-bottom: 0.1rem solid $border-color-black;
       }
       .totalPriceBox{
         padding:2.5rem 0;
@@ -172,7 +162,8 @@ export default {
     .cartStatusTitle{
       width:100%;
       margin: 1rem auto;
-      text-align: center;;
+      text-align: center;
+      font-size: 1.5rem;
     }
   }
   .actionBtnsBox{
@@ -186,13 +177,13 @@ export default {
         font-size: 1rem;
         text-align: center;
         padding:0.25rem 0.25rem;
-        border: 0.1rem solid black;
+        border: 0.1rem solid $border-color-black;
         border-radius: 0.5rem;
         transition: all 0.2s linear;
       }
       .actionBtn:hover{
-        background-color: black;
-        color:white
+        background-color: $font-black;
+        color:$font-white
       }
     }
 }

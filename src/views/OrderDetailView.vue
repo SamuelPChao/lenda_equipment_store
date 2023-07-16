@@ -38,7 +38,7 @@ export default {
 <template>
   <div class="orderDetailView">
     <div class="orderDetailBox">
-      <h3 class="cartTitle">Confirm Your Equipment</h3>
+      <h3 class="cartTitle">您的訂單內容</h3>
       <div class="bookingItemBox">
         <app-cart-item
           class="appCartItem"
@@ -94,8 +94,9 @@ export default {
     margin:0 auto;
     padding:5rem 0;
     .cartTitle{
+      font-size:1.5rem;
       text-align: center;
-      border-bottom: 1px solid $not-that-grey-blacker;
+      border-bottom:  0.1rem solid $border-color-black;
     }
     .bookingItemBox{
       width: 100%;
@@ -114,17 +115,17 @@ export default {
       margin: 0.5rem 0;
       padding:0.25rem 0.25rem;
       border-radius: 0.5rem;
-      border: 0.1rem solid black;
+      border: 0.1rem solid $border-color-black;
       transition: all 0.2s linear;
     }
     .actionBtn:hover{
-      background-color: black;
-      color:white
+      background-color: $font-black;
+      color:$font-white
     }
     .cancelBtn{
       background-color: rgba(255, 0, 0, 0.75);
-      color: white;
-      border: 0.1rem solid $not-that-grey-blacker;
+      color: $font-white;
+      border: 0.1rem solid $border-color-black;
     }
   }
 }

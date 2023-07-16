@@ -1,14 +1,14 @@
 <script>
-import useUserStore from '../stores/user'
-import { mapState } from 'pinia'
+import useUserStore from "../stores/user";
+import { mapState } from "pinia";
 export default {
-  name: 'UserInfoView',
+  name: "UserInfoView",
   computed: {
     ...mapState(useUserStore, {
-      currentUser: 'currentUser'
-    })
-  }
-}
+      currentUser: "currentUser",
+    }),
+  },
+};
 </script>
 <template>
   <div class="userInfoView">
@@ -26,63 +26,41 @@ export default {
           d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"
         />
       </svg>
-      <h1 class="bannerTitle">Account Info</h1>
+      <h1 class="bannerTitle">會員資料</h1>
     </div>
     <div class="userInfoBox">
       <div class="fieldBox">
-        <span class="userInfoField">Name</span
-        ><span class="userInfoValue">{{
-          currentUser.name
-        }}</span>
+        <span class="userInfoField">姓名</span
+        ><span class="userInfoValue">{{ currentUser.name }}</span>
       </div>
       <div class="fieldBox">
-        <span class="userInfoField">Email</span
-        ><span class="userInfoValue">{{
-          currentUser.email
-        }}</span>
+        <span class="userInfoField">電子信箱</span
+        ><span class="userInfoValue">{{ currentUser.email }}</span>
       </div>
       <div class="fieldBox">
-        <span class="userInfoField">Phone</span
-        ><span class="userInfoValue">{{
-          currentUser.phone
-        }}</span>
+        <span class="userInfoField">手機號碼</span
+        ><span class="userInfoValue">{{ currentUser.phone }}</span>
       </div>
       <div class="fieldBox">
-        <span class="userInfoField">Address</span
-        ><span class="userInfoValue">{{
-          currentUser.address
-        }}</span>
+        <span class="userInfoField">地址</span
+        ><span class="userInfoValue">{{ currentUser.address }}</span>
       </div>
       <div class="fieldBox">
-        <span class="userInfoField">ID</span
-        ><span class="userInfoValue">{{
-          currentUser.identification
-        }}</span>
+        <span class="userInfoField">身份證</span
+        ><span class="userInfoValue">{{ currentUser.identification }}</span>
       </div>
     </div>
     <div class="actionBtnsBox">
-      <router-link
-        :to="{ name: 'user-info-edit' }"
-        class="routerLink"
-        ><button class="actionBtn">
-          Edit User
-        </button></router-link
+      <router-link :to="{ name: 'user-info-edit' }" class="routerLink"
+        ><button class="actionBtn">編輯資料</button></router-link
       >
 
-      <router-link
-        class="routerLink"
-        :to="{ name: 'update-password' }"
-        ><button class="actionBtn">
-          Update Password
-        </button></router-link
+      <router-link class="routerLink" :to="{ name: 'update-password' }"
+        ><button class="actionBtn">更改密碼</button></router-link
       >
 
-      <router-link
-        :to="{ name: 'account' }"
-        class="routerLink"
-        ><button class="actionBtn">
-          Account Section
-        </button></router-link
+      <router-link :to="{ name: 'account' }" class="routerLink"
+        ><button class="actionBtn">回會員專區</button></router-link
       >
     </div>
   </div>
@@ -114,7 +92,7 @@ export default {
       width: 60%;
       display: flex;
       justify-content: space-between;
-      border-bottom: solid grey 1px;
+      border-bottom: solid $border-color 1px;
       font-size: 1rem;
       margin:0.5rem 0;
       .userInfoField{
@@ -136,14 +114,14 @@ export default {
         font-size: 1rem;
         text-align: center;
         border-radius: 0.5rem;
-        border: 0.1rem solid black;
+        border: 0.1rem solid $border-color-black;
         transition: all 0.2s linear;
         padding: 0.25rem 0;
         margin: 0.5rem 0;
       }
       .actionBtn:hover{
-        background-color: black;
-        color:white
+        background-color: $font-black;
+        color:$font-white;
       }
     }
   }

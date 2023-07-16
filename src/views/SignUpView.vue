@@ -1,34 +1,32 @@
 <script>
-import { mapActions } from 'pinia'
-import useUserStore from '../stores/user'
+import { mapActions } from "pinia";
+import useUserStore from "../stores/user";
 
 export default {
-  name: 'SignUpView',
+  name: "SignUpView",
   methods: {
     ...mapActions(useUserStore, {
-      signupUser: 'signupUser'
+      signupUser: "signupUser",
     }),
     async onSubmit(values, actions) {
       try {
-        const res = await this.signupUser(values, actions)
-        if (res) this.$router.push({ name: 'home' })
+        const res = await this.signupUser(values, actions);
+        if (res) this.$router.push({ name: "home" });
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <template>
   <div class="signUpView">
     <div class="signupFormBox">
       <Form class="signupForm" @submit="onSubmit">
-        <h3 class="fieldSectionLine">
-          Identification And Password
-        </h3>
+        <h3 class="fieldSectionLine">驗證</h3>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Identification</h3>
+          <h3 class="fieldTitle">身份證號碼</h3>
           <Field
             name="identification"
             type="text"
@@ -36,13 +34,10 @@ export default {
             class="inputField"
             placeholder="Please Enter Identification"
           ></Field>
-          <ErrorMessage
-            name="identification"
-            class="errorMessage"
-          />
+          <ErrorMessage name="identification" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Password</h3>
+          <h3 class="fieldTitle">密碼</h3>
           <Field
             name="password"
             type="password"
@@ -50,13 +45,10 @@ export default {
             class="inputField"
             placeholder="Please Enter Password"
           />
-          <ErrorMessage
-            name="password"
-            class="errorMessage"
-          />
+          <ErrorMessage name="password" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Confirm Password</h3>
+          <h3 class="fieldTitle">請確認密碼</h3>
           <Field
             name="passwordConfirm"
             type="password"
@@ -64,16 +56,11 @@ export default {
             class="inputField"
             placeholder="Please Confirm Password"
           />
-          <ErrorMessage
-            name="passwordConfirm"
-            class="errorMessage"
-          />
+          <ErrorMessage name="passwordConfirm" class="errorMessage" />
         </div>
-        <h3 class="fieldSectionLine">
-          Personal Information
-        </h3>
+        <h3 class="fieldSectionLine">會員資料</h3>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Name</h3>
+          <h3 class="fieldTitle">姓名</h3>
           <Field
             name="name"
             type="text"
@@ -83,7 +70,7 @@ export default {
           <ErrorMessage name="name" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Email</h3>
+          <h3 class="fieldTitle">電子信箱</h3>
           <Field
             name="email"
             type="email"
@@ -93,7 +80,7 @@ export default {
           <ErrorMessage name="email" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Address</h3>
+          <h3 class="fieldTitle">地址</h3>
           <Field
             name="address"
             type="text"
@@ -101,13 +88,10 @@ export default {
             class="inputField"
             placeholder="Please Enter Address"
           ></Field>
-          <ErrorMessage
-            name="address"
-            class="errorMessage"
-          />
+          <ErrorMessage name="address" class="errorMessage" />
         </div>
         <div class="fieldBox">
-          <h3 class="fieldTitle">Phone Number</h3>
+          <h3 class="fieldTitle">手機號碼</h3>
           <Field
             name="phone"
             type="text"
@@ -118,9 +102,7 @@ export default {
           <ErrorMessage name="phone" class="errorMessage" />
         </div>
         <div class="actionBtnBox">
-          <button type="submit" class="actionBtn">
-            Submit
-          </button>
+          <button type="submit" class="actionBtn">註冊會員</button>
         </div>
       </Form>
     </div>
@@ -132,20 +114,20 @@ export default {
   margin: auto;
   .signupFormBox{
     width: 100%;
-    background-color: $not-that-white;
     margin: 6rem auto 6rem auto;
     .signupForm{
       width: 60%;
       padding: 2rem;
-      border: 0.1rem $not-that-grey-blacker solid;
+      border: 0.1rem $border-color solid;
       border-radius: 0.25rem;
       margin: 0 auto;
-      box-shadow: 0 0 1rem 0.1rem $not-that-black-shadow;
+      box-shadow: 0 0 1rem 0.1rem $box-shadow-black;
+      background-color: $component-bg-color;
       .fieldSectionLine{
         margin: 0 auto;
         padding:2rem 0 0 0;
-        border-bottom: solid 2px $not-that-grey-blacker;
-        color:$not-that-black;
+        border-bottom: solid 0.1rem $border-color;
+        font-size:1.5rem;
       }
       .fieldBox{
         width: 100%;
@@ -155,23 +137,23 @@ export default {
         justify-content: left;
         align-items: center;
         padding:2rem 0.5rem;
-        border-bottom: 1px solid $not-that-grey-blacker;
+        border-bottom: 0.1rem solid $border-color;
         .fieldTitle{
+          font-size:1.25rem;
           text-align: center;
           padding:0 0 1rem 0;
-          color:$not-that-black;
         }
         .inputField{
           width:90%;
           height: 2.5rem;
           font-size: 1.25rem;
-          border: 0.1rem solid $not-that-grey-blacker;
+          border: 0.1rem solid $border-color;
           border-radius: 0.5rem;
         }
         .errorMessage{
           width: 90%;
           display: block;
-          color:red;
+          color:$error-msg-color;
           text-align: center;
         }
       }
@@ -183,14 +165,13 @@ export default {
         .actionBtn{
           width: 25%;
           font-size: 1.25rem;
-          color:$not-that-black;
-          border: 0.1rem solid $not-that-grey-blacker;
+          border: 0.1rem solid $font-black;
           border-radius: 0.5rem;
           transition: all 0.2s linear;
         }
         .actionBtn:hover{
-          background-color:$not-that-grey-blacker;
-          color:$not-that-white
+          background-color:$font-black;
+          color:$font-white
         }
       }
     }
@@ -205,6 +186,11 @@ export default {
           .errorMessage{
             width: 100%;
             font-size:0.75rem;
+          }
+        }
+        .actionBtnBox{
+          .actionBtn{
+            width: 60%;
           }
         }
       }

@@ -71,7 +71,7 @@ export default {
 <template>
   <div class="orderEditView">
     <div class="bookingDetailBox">
-      <h3 class="cartTitle">Confirm Your Equipment</h3>
+      <h3 class="cartTitle">請確認您的器材</h3>
       <div class="cartItemsBox">
         <app-cart-item
           @quantityChange="this.bookingVModel.cart[i].quantity = $event"
@@ -132,7 +132,8 @@ export default {
   }
   .cartTitle{
     text-align: center;
-    border-bottom: 1px solid $not-that-grey-blacker;
+    font-size: 1.5rem;
+    border-bottom:  0.1rem solid $border-color-black;
   }
   .cartItemsBox{
     width: 100%;
@@ -144,8 +145,8 @@ export default {
       font-size: 1.5rem;
       padding: 2.5rem 0 2.5rem 0;
       text-align: center;
-      border-top: 1px solid $not-that-black;
-      border-bottom: 1px solid $not-that-black;
+      border-top: 0.1rem solid $border-color-black;
+      border-bottom: 0.1rem solid $border-color-black;
     }
   }
   .actionBtnsBox{
@@ -161,12 +162,12 @@ export default {
       margin: 0.5rem 0;
       padding:0.25rem 0.25rem;
       border-radius: 0.5rem;
-      border: 0.1rem solid black;
+      border: 0.1rem solid $font-black;
       transition: all 0.2s linear;
     }
     .actionBtn:hover{
-      background-color: black;
-      color:white
+      background-color: $font-black;
+      color:$font-white
     }
   }
 }
